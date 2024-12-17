@@ -1,0 +1,28 @@
+<table border="1">
+    <thead>
+        <tr>
+            <th>Ism</th>
+            <th>Telefon</th>
+            <th>Manzil</th>
+            <th>Haqida</th>
+            <th>Kitob</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for ariza in arizalar %}
+            <tr>
+                <td>{{ ariza.name }}</td>
+                <td>{{ ariza.phone }}</td>
+                <td>{{ ariza.location }}</td>
+                <td>{{ ariza.about }}</td>
+                <td>
+                    {% if ariza.book %}
+                        {{ ariza.book.title }} ({{ ariza.book.author }})
+                    {% else %}
+                        Kitob tanlanmagan
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>

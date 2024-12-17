@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ book.title }}</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e1e2f, #27293d);
+            color: #e8e8e8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+        .back-button a {
+            padding: 10px 15px;
+            background: #dd2c16;
+            color: white;;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: background 0.3s ease;
+        }
+        .back-button a:hover {
+            background: #0b7ef1;
+        }
+        .card {
+            background: #2a2d3e;
+            width: 90%;
+            max-width: 800px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            animation: fadeIn 1s ease-out;
+        }
+        .image {
+            background: #1c1c28;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+            height: 250px;
+        }
+        .image img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            transform: scale(1);
+            transition: transform 0.5s ease;
+        }
+        .image img:hover {
+            transform: scale(1.1);
+        }
+        .details {
+            padding: 53px 30px;
+            display: flex;
+            flex-direction: column;
+        }
+        .details h1 {
+            font-size: 26px;
+            color: #f0f0f0;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #f39c12;
+            padding-bottom: 5px;
+        }
+        .details p {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #b8b8c7;
+        }
+        .price {
+            font-size: 18px;
+            color: #27ae60;
+            font-weight: bold;
+        }
+        .actions {
+            margin-top: 20px;
+            display: flex;
+            gap: 15px;
+        }
+        .btn {
+            padding: 12px 20px;
+            font-size: 14px;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            background: #2980b9;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(41, 128, 185, 0.4);
+        }
+        .btn:hover {
+            background: #1c598a;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(28, 89, 138, 0.6);
+        }
+        .btn.secondary {
+            background: #c0392b;
+        }
+        .btn.secondary:hover {
+            background: #8e2417;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @media (max-width: 768px) {
+            .card {
+                width: 95%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="back-button">
+        <a href="javascript:history.back()"><--Go Back</a>
+    </div>
+    <div class="card">
+        <div class="image">
+            {% if book.images %}
+            <img src="{{ book.images.url }}" alt="{{ book.title }}">
+            {% else %}
+            <p>No Image Available</p>
+            {% endif %}
+        </div>
+        <div class="details">
+            <h1>{{ book.title }}</h1>
+            <p><strong>Author:</strong> {{ book.author }}</p>
+            <p><strong>Description:</strong> {{ book.bio }}</p>
+            <p class="price">Price: {{ book.price }} ming so'm</p>
+            <p><strong>Admindan Tavsiya:</strong> {{ book.bio }}</p>
+            <div class="actions">
+                <a href="/sotish/{{ book.id }}" class="btn secondary">Purchase Now $</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
