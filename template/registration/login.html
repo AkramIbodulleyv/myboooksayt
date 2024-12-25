@@ -2,17 +2,83 @@
 {% load static %}
 
 {% block content %}
+<style>
+        body{
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+        .signup{
+        margin: 0;
+    }
+    .main{
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .signin-content{
+        width: 100% !important;
+        padding: 20px;
+        display: flex !important;
+        justify-content: space-between;
+        align-items: center !important;;
+        gap: 20px;
+    }
+
+
+    .signin-form{
+        width: 50%;
+        margin: 0 !important;
+        padding: 10px !important;
+        margin-right: 40px !important;
+
+    
+    }
+    .signin-image{
+        width: 50%;
+        margin: 0 !important;
+        padding: 20px !important;
+        overflow: hidden;
+        border-radius: 10px !important;
+
+    }
+    
+    .signin-image  img {
+        width: 100%;
+        border-radius: 10px !important;
+        object-fit: cover;
+    }
+    .sign-in{
+        width: 100%;
+        padding: 20px;
+    }
+
+    .form-group input{
+        width: 100%;
+        padding: 12px 20px;
+        font-size: 16px;
+    }
+    .form-submit{
+        outline: none;
+        border: none;
+        width: 100% !important;
+    }
+</style>
 <div class="main">
     <!-- Sign in Form -->
     <section class="sign-in">
         <div class="container">
             <div class="signin-content">
                 <div class="signin-image">
-                    <figure><img src="{% static 'images/signin-image.jpg' %}" alt="sing up image"></figure>
-                    <a href="{% url 'signup' %}" class="signup-image-link">Create an account</a>
+                   <img src="https://s3-alpha-sig.figma.com/img/9e1d/d4ea/2404838273cf3cef5a0db45589f82766?Expires=1736121600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=f0XT1dX4Y-VynSzZ5zVTsC0b2Pcs9m2FGQ9KVJCivfPSecOAqloCNNWTrfF9obrgkV-qmFoC9qqxeFl3WkT~E~4zqcZEjtzg3j0Bp~d~yeuZ-L1UHaaacdDiwtjq9IdqC9jraScTYcUDzRLs-B2oAvI88-egY7O~7G9Bz~WAxc~tV3A7ZqyayVbR-aV00YBzwvKQ86RZanT1LeD31bdRMn3em1G6Fr~m58xj3eW9wj4WqnubQcUJk3c-D9cgdXqsjFiGEth8I35GBPwng2wrLnEvyeUMzsTMRP-mG8IOegnU06VEd53M58lPpIi5J-opPrmfcqUyylVRXwVrsvv1VQ__"  alt="sing up image">
+                    <a href="{% url 'signup' %}" class="signup-image-link">Sizda akaunt yuqmi ? Unda yarating </a>
                 </div>
                 <div class="signin-form">
-                    <h2 class="form-title">Sign In</h2>
+                    <h2 class="form-title">Kirish </h2>
 
                     <!-- Display error messages -->
                     {% if messages %}
@@ -23,27 +89,29 @@
                         </div>
                     {% endif %}
 
-                    <form method="POST" class="register-form" id="login-form">{% csrf_token %}
+                    <form   method="POST" class="register-form" id="login-form">{% csrf_token %}
                         <div class="form-group">
                             <label for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                            <input type="text" name="username" id="your_name" placeholder="Username"/>
+                            <input required type="text" name="username" id="your_name" placeholder="Foydalanuvchi nomi"/>
                         </div>
                         <div class="form-group">
                             <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
-                            <input type="password" name="password" id="your_pass" placeholder="Password"/>
+                            <input required type="password" name="password" id="your_pass" placeholder="Parol"/>
                         </div>
                         <div class="form-group">
-                            <input type="checkbox" name="remember-me" id="remember-me" class="agree-term" />
-                            <label for="remember-me" class="label-agree-term"><span><span></span></span>Remember me</label>
+                            <input required type="checkbox" name="remember-me" id="remember-me" class="agree-term" />
+                            <label for="remember-me" class="label-agree-term"><span><span></span></span>Kirishni eslab qolish</label>
                         </div>
                         <div class="form-group form-button">
-                            <input type="submit" name="signin" id="signin" class="form-submit" value="Log in"/>
+                            <button type="submit" name="signin" id="signin" class="form-submit" >
+                                Log in
+                            </button>
                         </div>
                     </form>
                     <div class="social-login">
                         <span class="social-label">Bizning sahifalar</span>
                         <ul class="socials">
-                            <li><a href="#"><i class="display-flex-center zmdi zmdi-facebook"></i></a></li>
+                            <li><a href="https://www.facebook.com/profile.php?id=100083162168297"><i class="display-flex-center zmdi zmdi-facebook"></i></a></li>
                             <li><a href="#"><i class="display-flex-center zmdi zmdi-twitter"></i></a></li>
                             <li><a href="#"><i class="display-flex-center zmdi zmdi-google"></i></a></li>
                         </ul>
@@ -53,4 +121,10 @@
         </div>
     </section>
 </div>
+<script>
+    function handleSubmit(e) {
+      e.preventDefault(); // Prevents the default form submission behavior
+      console.log("Form submission prevented");
+    }
+  </script>
 {% endblock content %}

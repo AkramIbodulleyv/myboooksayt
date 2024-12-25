@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kitobni Top Quiz</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #333;
+        }
+
+        .header {
+            position: relative;
+            height: 200px;
+            background-color: #1f2937;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .header-pattern {
+            position: absolute;
+            inset: 0;
+            opacity: 0.1;
+            background-image: url('/static/Group2.png');
+            background-size: 950px;
+        }
+
+        .header-content {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .header-title {
+            color: white;
+            font-size: 2.5rem;
+            font-family: serif;
+            letter-spacing: 0.05em;
+        }
+
+        #quiz-container {
+            max-width: 600px;
+            width: 100%;
+            padding: 32px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            color: #1f2937;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .hint {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            color: #6b7280;
+        }
+
+        .score {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            font-weight: bold;
+            color: #4CAF50;
+        }
+
+        .button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+            transition: background-color 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        .button:hover {
+            background-color: #45a049;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 1.3rem;
+            padding: 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .correct {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .incorrect {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+
+        .footer a {
+            text-decoration: none;
+            color: #4CAF50;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div id="quiz-container">
+        <h1>Kitobni Top Quiz</h1>
+        <p id="hint" class="hint">Maslahat: Yosh sehrgar haqidagi kitob.</p>
+        <p id="score" class="score">Ballar: 0</p>
+        <div id="answers-container"></div>
+        <div id="result" class="result"></div>
+        <div class="footer">© 2024 Kitobni Top o'yini | <a href="/base/">Bosh sahifa</a></div>
+    </div>
+
+    <script>
+        const bookData = [
+            { title: "Harry Potter", hint: "Yosh sehrgarning sehrli dunyoda sarguzashtlari." },
+            { title: "The Great Gatsby", hint: "Jazzy davrida boylik, sevgi va fojia haqida hikoya." },
+            { title: "To Kill a Mockingbird", hint: "Janubda irqiy adolatsizlik haqida hikoya." },
+            { title: "1984", hint: "Nazorat va kuzatuv haqida distopik roman." },
+            { title: "Pride and Prejudice", hint: "Sevgi va jamiyat kutishlari haqida klassik roman." },
+            { title: "The Catcher in the Rye", hint: "O'spirinlarning qayg'u va bezovtaligi haqida hikoya." },
+            { title: "Moby Dick", hint: "Dengizchi katta oq kitni ovlash uchun sarguzashtga chiqadi." },
+            { title: "The Lord of the Rings", hint: "Yigirma halqa bilan bog'liq yirik fantastik sarguzasht." },
+            { title: "The Hobbit", hint: "Bir hobbitning boylikni qaytarish uchun sarguzashti." },
+            { title: "Jane Eyre", hint: "Ayolning mustaqillik va sevgi uchun kurashi." },
+            { title: "The Picture of Dorian Gray", hint: "Bir odamning suratga qaraganda yosh qolgani haqida hikoya." },
+            { title: "War and Peace", hint: "Napoleon urushlari davrida tarixiy epik hikoya." },
+            { title: "Crime and Punishment", hint: "G'iybat va najot haqida falsafiy roman." },
+            { title: "Anna Karenina", hint: "Sevgi va xiyonat haqidagi ruscha hikoya." },
+            { title: "Brave New World", hint: "Texnologiya va nazorat orqali shakllangan kelajak." },
+            { title: "Wuthering Heights", hint: "Sevgi va qasos haqida dramatik hikoya." },
+            { title: "The Odyssey", hint: "Gretsiya qahramonining Troya urushidan keyingi qaytish yo'li." },
+            { title: "Les Misérables", hint: "Fransiyada siyosiy inqiroz davrida najot haqida hikoya." },
+            { title: "The Scarlet Letter", hint: "Puritan jamiyatida aybni ko'rsatuvchi belgi." },
+            { title: "Frankenstein", hint: "Bir olim tirik mavjudot yaratib, og'ir oqibatlarga olib keladi." },
+            { title: "The Alchemist", hint: "Bir cho'ponning taqdirini topish uchun sayohati." },
+            { title: "The Kite Runner", hint: "Afsonaviy dostlik, xiyonat va najot haqida hikoya." },
+            { title: "Dracula", hint: "Bir vampirning Angliya va Transilvaniyada qo'rqinchli sarguzashtlari." },
+            { title: "The Shining", hint: "Bir oilaning qishloqdagi mehmonxonada davom etayotgan qo'rquvlari." },
+            { title: "The Road", hint: "Post-apokaliptik dunyoda ota va bola sayohati." },
+            { title: "Of Mice and Men", hint: "Ikkita do'stning yaxshiroq hayot uchun orzulari." },
+        ];
+
+        let currentBookIndex;
+        const usedIndexes = new Set();
+        let score = 0;
+
+        function getRandomBook() {
+            if (usedIndexes.size === bookData.length) {
+                alert("Barcha savollarni yakunladingiz!");
+                return null;
+            }
+            let index;
+            do {
+                index = Math.floor(Math.random() * bookData.length);
+            } while (usedIndexes.has(index));
+            usedIndexes.add(index);
+            return index;
+        }
+
+        function shuffleAnswers(correctTitle) {
+            const shuffledTitles = [correctTitle, ...getRandomBooksExcept(correctTitle)];
+            return shuffledTitles.sort(() => Math.random() - 0.5);
+        }
+
+        function getRandomBooksExcept(correctTitle) {
+            const otherBooks = bookData
+                .filter(book => book.title !== correctTitle)
+                .map(book => book.title);
+            return otherBooks.slice(0, 3);
+        }
+
+        function loadHint() {
+            currentBookIndex = getRandomBook();
+            if (currentBookIndex !== null) {
+                const correctTitle = bookData[currentBookIndex].title;
+                document.getElementById('hint').textContent = "Maslahat: " + bookData[currentBookIndex].hint;
+
+                const answers = shuffleAnswers(correctTitle);
+                const answersContainer = document.getElementById('answers-container');
+                answersContainer.innerHTML = '';
+                answers.forEach(answer => {
+                    const button = document.createElement('button');
+                    button.textContent = answer;
+                    button.classList.add('button');
+                    button.onclick = () => checkGuess(answer);
+                    answersContainer.appendChild(button);
+                });
+            }
+        }
+
+        function checkGuess(userGuess) {
+            const correctTitle = bookData[currentBookIndex]?.title;
+            const resultElement = document.getElementById('result');
+
+            if (userGuess === correctTitle) {
+                score++;
+                document.getElementById('score').textContent = `Ballar: ${score}`;
+                resultElement.textContent = "To'g'ri! 🎉";
+                resultElement.classList.add("correct");
+                resultElement.classList.remove("incorrect");
+                loadHint();
+            } else {
+                resultElement.textContent = "Noto'g'ri, qayta urinib ko'ring!";
+                resultElement.classList.add("incorrect");
+                resultElement.classList.remove("correct");
+            }
+        }
+
+        loadHint();
+    </script>
+</body>
+</html>

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Badiiyat - Kitob Ma'lumotlari</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        .header {
+            border-bottom: 1px solid #eee;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: #333;
+            text-decoration: none;
+            font-size: 24px;
+            font-weight: 300;
+        }
+
+        .nav {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+        }
+
+        .nav a {
+            color: #666;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .book-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .book-cover {
+            aspect-ratio: 1;
+            background: #f5f5f5;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .book-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .book-info {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .book-title {
+            font-size: 32px;
+            font-weight: 300;
+            color: #333;
+        }
+
+        .book-stats {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .stat-label {
+            color: #666;
+        }
+
+        .stat-value {
+            font-weight: 500;
+        }
+
+        .book-description h2 {
+            color: #999;
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+
+        .book-description p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        /* New Design for Related Books */
+        .related-works h2 {
+            font-size: 24px;
+            font-weight: 300;
+            color: #333;
+            margin-bottom: 32px;
+        }
+
+        .book-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 20px;
+        }
+
+        .book-card {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .book-card-cover {
+            aspect-ratio: 3/4;
+            background: #f5f5f5;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .book-card-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .book-card-title {
+            font-size: 14px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .book-card-author {
+            font-size: 12px;
+            color: #666;
+        }
+
+        @media (max-width: 768px) {
+            .book-details {
+                grid-template-columns: 1fr;
+            }
+
+            .header {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="/base/" class="logo">Badiiyat</a>
+        <nav class="nav">
+            <a href="/base/">Bosh sahifa</a>
+            <a href="/base/?genre=">Kitoblar</a>
+        </nav>
+    </header>
+
+    <main class="main">
+        <div class="book-details">
+            <div class="book-cover">
+                {% if book.book_image %}
+                <img src="{{ book.book_image.url }}" alt="{{ book.title }} rasmi">
+                {% else %}
+                <img src="/static/imagenot.png" alt="Kitob rasmi yo'q">
+                {% endif %}
+            </div>
+            <div class="book-info">
+                <h1 class="book-title">{{ book.title }}</h1>
+                <div class="book-stats">
+                    <div class="stat-row">
+                        <span class="stat-label">Sahifalar soni:</span>
+                        <span class="stat-value">{{ book.pages }}</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Chop etilgan:</span>
+                        <span class="stat-value">{{ book.year|date:"Y-m-d" }}</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Narxi:</span>
+                        <span class="stat-value">{{ book.price }} so'm</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Janr:</span>
+                        <span class="stat-value">{{ book.genre }}</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Muallif:</span>
+                        <span class="stat-value">{{ book.author }}</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">ISBN:</span>
+                        <span class="stat-value">{{ book.isbn }}</span>
+                    </div>
+                </div>
+                <div class="book-description">
+                    <h2>Kitob haqida</h2>
+                    <p>{{ book.bio }}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Related Works Section -->
+        <section class="related-works">
+            <h2>Boshqa kitoblar</h2>
+            <div class="book-grid">
+                {% for related_book in related_books %}
+                <div class="book-card">
+                    <div class="book-card-cover">
+                        {% if related_book.book_image %}
+                        <img src="{{ related_book.book_image.url }}" alt="{{ related_book.title }} rasmi">
+                        {% else %}
+                        <img src="/static/imagenot.png" alt="Kitob rasmi yo'q">
+                        {% endif %}
+                    </div>
+                    <div class="book-card-title">{{ related_book.title }}</div>
+                    <div class="book-card-author">{{ related_book.author }}</div>
+                </div>
+                {% empty %}
+                <p>Hozirda boshqa kitoblar mavjud emas.</p>
+                {% endfor %}
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <a href="{% url 'base' %}">Kitoblar ro'yxatiga qaytish</a>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temuriylar Davri Adabiyoti</title>
+    <style>
+        /* O'zgartirilgan ranglar bilan animatsiyalarni qo'shish */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .header {
+            position: relative;
+            height: 200px;
+            background-color: #1f2937;
+            overflow: hidden;
+        }
+
+        .header-pattern {
+            position: absolute;
+            inset: 0;
+            opacity: 0.1;
+            background-image: url('/static/Group2.png');
+            background-size: 950px;
+        }
+
+        .header-content {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .header-title {
+            color: #C9AC8C;  /* Yangi rang */
+            font-size: 2.5rem;
+            font-family: serif;
+            letter-spacing: 0.05em;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 32px 20px;
+        }
+
+        .search-box {
+            background: white;
+            padding: 16px;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            display: flex;
+            gap: 8px;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 8px 12px;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            font-size: 0.875rem;
+        }
+
+        .search-button {
+            padding: 8px 16px;
+            background-color: #C9AC8C;  /* Yangi rang */
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            cursor: pointer;
+            color: white;  /* Tugmada matn rangi */
+        }
+
+        .search-button:hover {
+            background-color: #b88a6b;
+        }
+
+        .search-button2 {
+            padding: 8px 16px;
+            background-color: #C9AC8C;  /* Yangi rang */
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            cursor: pointer;
+            position: absolute;
+            top: 24px !important;
+            right: 20px !important;
+            transition: all 0.3s ease;
+            color: white;
+            z-index: 10;
+        }
+
+        .search-button2:hover {
+            background-color: #b88a6b;
+            transform: scale(1.1);
+        }
+
+        .search-button2:active {
+            background-color: #b88a6b;
+        }
+
+        @keyframes gameInterface {
+            0% {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .search-button2 {
+            animation: gameInterface 1s ease-out;
+        }
+
+        .categories {
+            margin-top: 32px;
+            text-align: center;
+        }
+
+        .categories h2 {
+            color: #4b5563;
+            font-size: 1.25rem;
+            margin-bottom: 8px;
+        }
+
+        .category-links {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            color: #6b7280;
+            font-size: 0.875rem;
+        }
+
+        .category-links a {
+            padding: 6px 12px;
+            background-color: #f3f4f6;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .category-links a:hover {
+            background-color: #e5e7eb;
+        }
+
+        .grid {
+            margin-top: 48px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 24px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            transition: box-shadow 0.2s;
+        }
+
+        .card:hover {
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .card-image {
+            aspect-ratio: 1;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .card-notimage {
+            aspect-ratio: 1;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 16px;
+            text-align: center;
+        }
+
+        .card-title {
+            font-weight: 500;
+            margin-bottom: 4px;
+            color: #C9AC8C;  /* Yangi rang */
+        }
+
+        .card-years {
+            color: #6b7280;
+            font-size: 0.875rem;
+        }
+
+        @media (max-width: 768px) {
+            .header-title {
+                font-size: 2rem;
+            }
+
+            .category-links {
+                flex-wrap: wrap;
+                gap: 12px;
+            }
+
+            .grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-pattern"></div>
+        <div class="header-content">
+            <h1 class="header-title">TEMURIYLAR DAVRI ADABIYOTI</h1>
+        </div>
+    </header>
+
+    <main class="container">
+        <form method="GET">
+            <div class="search-box">
+                <input type="search" class="search-input" name="search" placeholder="Adiblar, kitoblar, maqolalar..." value="{{ request.GET.search }}">
+                <button class="search-button" type="submit">Qidirish</button>
+            </div>
+        </form>
+
+        <!-- Savol-Javob o'yini button -->
+        <a class="search-button2" href="/game/">Savol-Javob O`yin</a>
+
+        <section class="categories">
+            <h2>Asosiy kategoriyalar</h2>
+            <div class="category-links">
+                <a href="?genre=">Hamma kitoblar</a>
+                <a href="?genre=Diniy">Diniy kitoblar</a>
+                <a href="?genre=Jadid Adabiyoti">Jadid Adabiyoti</a>
+                <a href="?genre=Zamonaviy">Zamonaviy kitoblar</a>
+                <a href="?genre=Ishqiy">Ishqiy kitoblar</a>
+            </div>
+        </section>
+
+        <section class="grid">
+            {% for book in books %}
+            <div class="card">
+                {% if book.book_image %}
+                <img src="{{ book.book_image.url }}" class="card-image" alt="{{ book.title }}">
+                {% else %}
+                <img src="/static/imagenot.png" class="card-image" alt="{{ book.title }}">
+                {% endif %}
+                <div class="card-content">
+                    <h3 class="card-title">
+                        <a href="{% url 'bookdetails' book.id %}">{{ book.title }}</a>
+                    </h3>
+                    <h3 class="card-title">{{ book.title }}</h3>
+                    <p class="card-years">{{ book.year.year }} | {{ book.pages }} sahifa</p>
+                    <p><strong>Muallif:</strong> {{ book.author }}</p>
+                    <p><strong>Janr:</strong> {{ book.get_genre_display }}</p>
+                </div>
+            </div>
+            {% empty %}
+                <p>Hech qanday kitob topilmadi.</p>
+            {% endfor %}
+        </section>
+    </main>
+</body>
+</html>

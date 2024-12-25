@@ -1,39 +1,31 @@
 from django.db import models
 import django.contrib.gis
+from django.core.validators import FileExtensionValidator
+from django_resized import ResizedImageField
 # Create your models here.
 
-class foydalanuvchimalumoti(models.Model):
-    objects = None
-    username = models.CharField(max_length=225)
-    email = models.EmailField(max_length=100)
-    birth_date = models.DateField(max_length=100)
-    password = models.CharField(max_length=100)
-    phone = models.CharField(max_length=100)
-    job = models.CharField(max_length=100)
 
-    def __str__(self):
-        return self.username
 
-class Books(models.Model):
-    title = models.CharField(max_length=100)
-    pages = models.IntegerField()
-    images = models.ImageField(upload_to='image/', null = True,blank=True)
-    published_date = models.DateField()
-    price = models.IntegerField()
-    author = models.CharField(max_length=200)
-    bio = models.CharField(max_length=200)
+
+
+
+class AddBook(models.Model):
+    GENRE_CHOICES = [
+        ("Diniy", "Diniy"),
+        ("Jadid Adabiyoti", "Jadid Adabiyoti"),
+        ("Zamonaviy", "Zamonaviy"),
+        ("Ishqiy", "Ishqiy"),
+    ]
+    title = models.CharField(max_length=350, verbose_name="Kitob nomi")
+    pages = models.PositiveIntegerField(verbose_name="Sahifalar soni")
+    year = models.DateField(verbose_name="Chop etilgan sana")
+    price = models.PositiveIntegerField(verbose_name="Narxi (so'm)")
+    book_image = ResizedImageField(size=[220,320],crop=['middle','center'],upload_to='image/', null=True, blank=True, verbose_name="Kitob rasmi",validators=[FileExtensionValidator(['jpg','jpeg','png','bmp','webp'])])
+    genre = models.CharField(max_length=20, choices=GENRE_CHOICES, verbose_name="Janr")
+    author = models.CharField(max_length=225, verbose_name="Muallif")
+    isbn = models.CharField(max_length=13, verbose_name="ISBN")
+    bio = models.TextField(verbose_name="Annotatsiya")
 
     def __str__(self):
         return self.title
-    
 
-class Sotish(models.Model):
-    name = models.CharField(max_length=200)
-    book = models.ForeignKey(Books, null=True, blank=True,on_delete=models.SET_NULL)
-    phone = models.CharField(max_length=100)
-    location = models.CharField(max_length=200)
-    about = models.CharField(max_length=200)
-
-
-    def __str__(self):
-        return self.name
