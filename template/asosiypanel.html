@@ -67,18 +67,18 @@
         .search-input {
             flex: 1;
             padding: 8px 12px;
-            border: 1px solid #e5e7eb;
+            box-shadow:  0 1px 19px #4b5563;
             border-radius: 6px;
             font-size: 0.875rem;
         }
 
         .search-button {
             padding: 8px 16px;
-            background-color: #C9AC8C;  /* Yangi rang */
-            border: 1px solid #e5e7eb;
+            background-color: #C9AC8C;
+            box-shadow: 0 1px 35px #C9AC8C;
             border-radius: 6px;
             cursor: pointer;
-            color: white;  /* Tugmada matn rangi */
+            color: white;
         }
 
         .search-button:hover {
@@ -163,9 +163,9 @@
 
         .card {
             background: white;
-            border-radius: 8px;
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            box-shadow: 0 3px 16px #4b5563;
             transition: box-shadow 0.2s;
         }
 
@@ -179,11 +179,7 @@
             object-fit: cover;
         }
 
-        .card-notimage {
-            aspect-ratio: 1;
-            width: 100%;
-            object-fit: cover;
-        }
+
 
         .card-content {
             padding: 16px;
@@ -199,6 +195,16 @@
         .card-years {
             color: #6b7280;
             font-size: 0.875rem;
+        }
+
+        .card-link {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .card-link:hover {
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
         @media (max-width: 768px) {
@@ -250,20 +256,20 @@
         <section class="grid">
             {% for book in books %}
             <div class="card">
-                {% if book.book_image %}
-                <img src="{{ book.book_image.url }}" class="card-image" alt="{{ book.title }}">
-                {% else %}
-                <img src="/static/imagenot.png" class="card-image" alt="{{ book.title }}">
-                {% endif %}
-                <div class="card-content">
-                    <h3 class="card-title">
-                        <a href="{% url 'bookdetails' book.id %}">{{ book.title }}</a>
-                    </h3>
-                    <h3 class="card-title">{{ book.title }}</h3>
-                    <p class="card-years">{{ book.year.year }} | {{ book.pages }} sahifa</p>
-                    <p><strong>Muallif:</strong> {{ book.author }}</p>
-                    <p><strong>Janr:</strong> {{ book.get_genre_display }}</p>
-                </div>
+                <!-- Wrap the entire card in an anchor tag -->
+                <a href="{% url 'bookdetails' book.id %}" class="card-link">
+                    {% if book.book_image %}
+                    <img src="{{ book.book_image.url }}" class="card-image" alt="{{ book.title }}">
+                    {% else %}
+                    <img src="/static/imagenot.png" class="card-image" alt="{{ book.title }}">
+                    {% endif %}
+                    <div class="card-content">
+                        <h3 class="card-title">{{ book.title }}</h3>
+                        <p class="card-years">{{ book.year.year }} | {{ book.pages }} sahifa</p>
+                        <p><strong>Muallif:</strong> {{ book.author }}</p>
+                        <p><strong>Janr:</strong> {{ book.get_genre_display }}</p>
+                    </div>
+                </a>
             </div>
             {% empty %}
                 <p>Hech qanday kitob topilmadi.</p>

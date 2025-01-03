@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Badiiyat - Kitob Ma'lumotlari</title>
+    <title>{{ book.title }} - Kitob Ma'lumotlari</title>
     <style>
         * {
             margin: 0;
@@ -18,10 +18,11 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            background-color: #C9AC8C; /* Header background color */
         }
 
         .logo {
-            color: #333;
+            color: #fff; /* White color for logo */
             text-decoration: none;
             font-size: 24px;
             font-weight: 300;
@@ -34,9 +35,17 @@
         }
 
         .nav a {
-            color: #666;
+            color: #fff; /* White color for navigation links */
             text-decoration: none;
             font-size: 14px;
+            padding: 10px 20px;
+            background-color: #00000a; /* Button background */
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .nav a:hover {
+            background-color: #9E7B54; /* Darker shade for hover effect */
         }
 
         .main {
@@ -99,7 +108,7 @@
         }
 
         .book-description h2 {
-            color: #999;
+            color: #C9AC8C;
             font-size: 14px;
             margin-bottom: 16px;
         }
@@ -110,11 +119,24 @@
             margin-bottom: 16px;
         }
 
-        /* New Design for Related Books */
+        .book-description p {
+            max-height: 6em;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 6;
+            -webkit-box-orient: vertical;
+        }
+
+        .book-description p.expanded {
+            max-height: none;
+            -webkit-line-clamp: unset;
+        }
+
         .related-works h2 {
             font-size: 24px;
             font-weight: 300;
-            color: #333;
+            color: #C9AC8C;
             margin-bottom: 32px;
         }
 
@@ -124,11 +146,22 @@
             gap: 20px;
         }
 
+        .book-card-link {
+    display: block;
+    text-decoration: none; /* Havola ostidagi chiziqni olib tashlash */
+    color: inherit; /* Matnning asl rangini saqlash */
+}
+
+.book-card-link:hover {
+    opacity: 0.8; /* Hover holatda, biroz o‘zgartirish */
+}
+
         .book-card {
             display: flex;
             flex-direction: column;
             gap: 8px;
         }
+
 
         .book-card-cover {
             aspect-ratio: 3/4;
@@ -152,6 +185,17 @@
         .book-card-author {
             font-size: 12px;
             color: #666;
+        }
+
+        footer {
+            padding: 20px;
+            background-color: #c9ac8c00;
+            text-align: center;
+        }
+
+        footer a {
+            color: #fff;
+            text-decoration: none;
         }
 
         @media (max-width: 768px) {
@@ -188,7 +232,7 @@
                 <div class="book-stats">
                     <div class="stat-row">
                         <span class="stat-label">Sahifalar soni:</span>
-                        <span class="stat-value">{{ book.pages }}</span>
+                        <span class="stat-value">{{ book.pages }} sahifa</span>
                     </div>
                     <div class="stat-row">
                         <span class="stat-label">Chop etilgan:</span>
@@ -196,7 +240,7 @@
                     </div>
                     <div class="stat-row">
                         <span class="stat-label">Narxi:</span>
-                        <span class="stat-value">{{ book.price }} so'm</span>
+                        <span class="stat-value">{{ book.price }} 000 so'm</span>
                     </div>
                     <div class="stat-row">
                         <span class="stat-label">Janr:</span>
@@ -206,14 +250,13 @@
                         <span class="stat-label">Muallif:</span>
                         <span class="stat-value">{{ book.author }}</span>
                     </div>
-                    <div class="stat-row">
-                        <span class="stat-label">ISBN:</span>
-                        <span class="stat-value">{{ book.isbn }}</span>
-                    </div>
                 </div>
                 <div class="book-description">
-                    <h2>Kitob haqida</h2>
-                    <p>{{ book.bio }}</p>
+                    <h2>Kitob haqida ----------------------------------------------------------------------------------------------- </h2>
+                    <p id="book-bio">{{ book.bio }}</p>
+                    {% if book.bio|length > 300 %}
+                    <span id="more-btn" onclick="toggleDescription()" style="color: #C9AC8C; cursor: pointer;">...more</span>
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -221,28 +264,48 @@
         <!-- Related Works Section -->
         <section class="related-works">
             <h2>Boshqa kitoblar</h2>
-            <div class="book-grid">
-                {% for related_book in related_books %}
-                <div class="book-card">
-                    <div class="book-card-cover">
-                        {% if related_book.book_image %}
-                        <img src="{{ related_book.book_image.url }}" alt="{{ related_book.title }} rasmi">
-                        {% else %}
-                        <img src="/static/imagenot.png" alt="Kitob rasmi yo'q">
-                        {% endif %}
-                    </div>
-                    <div class="book-card-title">{{ related_book.title }}</div>
-                    <div class="book-card-author">{{ related_book.author }}</div>
-                </div>
-                {% empty %}
-                <p>Hozirda boshqa kitoblar mavjud emas.</p>
-                {% endfor %}
+<div class="book-grid">
+    {% for related_book in related_books %}
+    <div class="book-card">
+        <!-- Butun kartani havola ichiga olamiz -->
+        <a href="{% url 'bookdetails' related_book.id %}" class="book-card-link">
+            <div class="book-card-cover">
+                {% if related_book.book_image %}
+                <img src="{{ related_book.book_image.url }}" alt="{{ related_book.title }} rasmi">
+                {% else %}
+                <img src="/static/imagenot.png" alt="Kitob rasmi yo'q">
+                {% endif %}
             </div>
+            <div class="book-card-title">{{ related_book.title }}</div>
+            <div class="book-card-author">{{ related_book.author }}</div>
+        </a>
+    </div>
+    {% empty %}
+    <p>Hozirda boshqa kitoblar mavjud emas.</p>
+    {% endfor %}
+</div>
+
+
         </section>
     </main>
 
+    <script>
+        function toggleDescription() {
+            const bio = document.getElementById("book-bio");
+            const button = document.getElementById("more-btn");
+
+            if (bio.classList.contains("expanded")) {
+                bio.classList.remove("expanded");
+                button.textContent = "...more";
+            } else {
+                bio.classList.add("expanded");
+                button.textContent = "Show less";
+            }
+        }
+    </script>
+
     <footer>
-        <a href="{% url 'base' %}">Kitoblar ro'yxatiga qaytish</a>
+        <p>&copy; 2024 Badiiyat. Barcha huquqlar himoyalangan.</p>
     </footer>
 </body>
 </html>

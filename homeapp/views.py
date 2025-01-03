@@ -70,7 +70,7 @@ class Asosiypanel(ListView):
         if genre_filter:
             queryset = queryset.filter(genre=genre_filter)
 
-        return queryset
+        return queryset.order_by('?')
 
 
 
