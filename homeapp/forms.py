@@ -16,3 +16,9 @@ class RegistrationForm(UserCreationForm):
     class Meta:
         model = User
         fields = ['first_name', 'last_name', 'username', 'email']
+
+
+
+class VerificationForm(forms.Form):
+    email = forms.EmailField()
+    code = forms.CharField(max_length=5)

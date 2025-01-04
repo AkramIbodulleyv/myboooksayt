@@ -9,6 +9,7 @@ urlpatterns = [
     path('game/',views.snakegame,name='snakegame'),
     path('base/',views.Asosiypanel.as_view(),name='base'),
     path('info/<int:book_id>/',views.bookdetails,name='bookdetails'),
+     path('verify-email/', views.verify_email_view, name='verify_email'),
     path('add/',views.addbook,name='addbook'),
     path('login/', views.login_view, name='login'),
     path('', views.signup_view, name='signup'),

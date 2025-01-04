@@ -29,3 +29,10 @@ class AddBook(models.Model):
     def __str__(self):
         return self.title
 
+class VerificationCode(models.Model):
+    email = models.EmailField(unique=True)
+    code = models.CharField(max_length=5)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def is_expired(self):
+        return (now() - self.created_at).seconds > 300

@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+    /* Overall background and container */
+    body {
+        background-color: #2C2C2C; /* Dark background for the page */
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .verification-container {
+        max-width: 400px;
+        margin: 50px auto;
+        padding: 30px;
+        background-color: #1F1F1F; /* Dark container */
+        border-radius: 10px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        text-align: center;
+        border: 2px solid #333; /* Soft border for the container */
+    }
+
+    /* Header styling */
+    h2 {
+        font-size: 24px;
+        color: #f1c40f;
+        margin-bottom: 20px;
+        font-weight: bold;
+        text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7); /* Shadow effect for text */
+    }
+
+    /* Form styling */
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    label {
+        font-size: 34px;
+        left: 400px;
+        top: 64%;
+        color: #ccc;
+        margin-bottom: 10px;
+    }
+
+    /* Input field styling */
+    input {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 20px;
+        border: 2px solid #444; /* Dark border for the input field */
+        background-color: #333; /* Dark background for the input */
+        color: #fff; /* White text */
+        border-radius: 5px;
+        font-size: 16px;
+        transition: all 0.3s ease;
+    }
+
+    input:focus {
+        border-color: #f1c40f; /* Gold focus border */
+        background-color: #444;
+    }
+
+    /* Button styling */
+    button {
+        padding: 12px 24px;
+        background-color: #f39c12; /* Golden yellow button */
+        color: #fff;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    button:hover {
+        background-color: #e67e22; /* Lighter gold on hover */
+    }
+
+    /* Error message styling */
+    p {
+        color: #e74c3c; /* Red for error message */
+        font-size: 14px;
+        margin-bottom: 20px;
+    }
+
+    /* Add Eastern decorative pattern to the background */
+    .verification-container {
+        background-image: url('https://example.com/central-asia-pattern.png'); /* Example of a traditional pattern */
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+</style>
+
+<div class="verification-container">
+    <h2>Temuriylar Davri</h2>
+    {% if error %}
+        <p>{{ error }}</p>
+    {% endif %}
+    <form method="POST">
+        {% csrf_token %}
+        <label for="verification_code">Sizning Emailingizga borgan mahsus kodni kiriting ! Iltimos</label>
+        <input type="text" name="verification_code" required />
+        <button type="submit">Kirish</button>
+    </form>
+</div>
+{% endblock %}
