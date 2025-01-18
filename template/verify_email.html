@@ -1,9 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
 <style>
-    /* Overall background and container */
     body {
-        background-color: #2C2C2C; /* Dark background for the page */
+        background-color: #2C2C2C;
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
@@ -11,23 +10,21 @@
         max-width: 400px;
         margin: 50px auto;
         padding: 30px;
-        background-color: #1F1F1F; /* Dark container */
+        background-color: #1F1F1F;
         border-radius: 10px;
         box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
         text-align: center;
-        border: 2px solid #333; /* Soft border for the container */
+        border: 2px solid #333;
     }
 
-    /* Header styling */
     h2 {
         font-size: 24px;
         color: #f1c40f;
         margin-bottom: 20px;
         font-weight: bold;
-        text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7); /* Shadow effect for text */
+        text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
     }
 
-    /* Form styling */
     form {
         display: flex;
         flex-direction: column;
@@ -42,28 +39,27 @@
         margin-bottom: 10px;
     }
 
-    /* Input field styling */
     input {
         width: 100%;
         padding: 12px;
         margin-bottom: 20px;
-        border: 2px solid #444; /* Dark border for the input field */
-        background-color: #333; /* Dark background for the input */
-        color: #fff; /* White text */
+        border: 2px solid #444;
+        background-color: #333;
+        color: #fff;
         border-radius: 5px;
         font-size: 16px;
         transition: all 0.3s ease;
     }
 
     input:focus {
-        border-color: #f1c40f; /* Gold focus border */
+        border-color: #f1c40f;
         background-color: #444;
     }
 
     /* Button styling */
     button {
         padding: 12px 24px;
-        background-color: #f39c12; /* Golden yellow button */
+        background-color: #3191c5;
         color: #fff;
         font-size: 16px;
         border: none;
@@ -73,19 +69,17 @@
     }
 
     button:hover {
-        background-color: #e67e22; /* Lighter gold on hover */
+        background-color: #e67e22;
     }
 
-    /* Error message styling */
     p {
-        color: #e74c3c; /* Red for error message */
+        color: #e74c3c;
         font-size: 14px;
         margin-bottom: 20px;
     }
 
-    /* Add Eastern decorative pattern to the background */
     .verification-container {
-        background-image: url('https://example.com/central-asia-pattern.png'); /* Example of a traditional pattern */
+        background-image: url('https://example.com/central-asia-pattern.png');
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;

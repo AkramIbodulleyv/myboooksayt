@@ -1,5 +1,4 @@
 from django.core.mail import send_mail
-
 from random import randint
 
 def generate_verification_code():

@@ -1,16 +1,222 @@
 <!DOCTYPE html>
 <html lang="uz">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Temuriylar Davri Adabiyoti</title>
     <style>
-        /* O'zgartirilgan ranglar bilan animatsiyalarni qo'shish */
+
+.dark-mode-btn {
+    padding: 16px 20px;
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    cursor: pointer;
+    position: absolute;
+    top: 190px !important;
+    right: 20px !important;
+    transition: all 0.3s ease;
+    color: black;
+    z-index: 10;
+}
+
+.dark-mode-btn:hover {
+    color: #d1d1d1;
+}
+
+body.dark-mode {
+    background-color: #0a180d;
+    color: #e0e0e0;
+}
+
+
+body.dark-mode img {
+    filter: none;
+}
+
+body.dark-mode .header-pattern {
+    filter: none;
+}
+
+body.dark-mode .header {
+    background-color: #C9AC8C !important;
+}
+
+body.dark-mode .header-title {
+    color: #C9AC8C;
+}
+
+/* Search box */
+body.dark-mode .search-box {
+    background: #333;
+    color: #f8f9fa;
+}
+
+body.dark-mode .search-button,
+body.dark-mode .search-button2,
+body.dark-mode .search-button3,
+body.dark-mode .search-button4,
+body.dark-mode .search-button5 {
+    background-color: #C9AC8C;
+    color: white;
+}
+
+/* Card elementlari */
+body.dark-mode .card {
+    background: #222;
+    color: #f8f9fa;
+}
+
+body.dark-mode .card:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Pagination link */
+body.dark-mode .pagination-link {
+    color: #e0e0e0;
+    border: 1px solid #444;
+}
+
+body.dark-mode .pagination-link:hover {
+    background-color: #333;
+    color: #f8f9fa;
+}
+
+body.dark-mode .pagination-link.active {
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+/* Logout button */
+body.dark-mode .logout-button {
+    background-color: #b91c1c;
+    color: #1b5de3;
+}
+body.dark-mode .header-pattern {
+    filter: none !important;
+    background-size: 950px;
+    position: absolute;/* Dark mode'da rasmga ta'sir qilmaslik */
+    opacity: 1 !important;   /* Opacity ni 1 qilib, rasmni qorayishini oldini olish */
+}
+
+/* Dark mode uchun tasvirlarni sozlash */
+body.dark-mode img {
+    filter: none !important; /* Dark mode'da rasmga hech qanday filtr qo'llanmasin */
+}
+
+
+body.dark-mode .logout-button:hover {
+    background-color: #9f1239;
+}
+
+/* Dark mode button rangini o'zgartirish */
+body.dark-mode .dark-mode-btn {
+    background-color: #333;
+    color: white;
+}
+
+body.dark-mode .dark-mode-btn:hover {
+    background-color: #444;
+    color: #e0e0e0;
+}
+
+        body{
+            overflow-x: hidden;
+        }
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideInFromLeft {
+            0% {
+                opacity: 0;
+                transform: translateX(-100px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideDown {
+            0% {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes zoomIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Adding Animations to Existing Elements */
+        body {
+            animation: fadeIn 2s ease;
+        }
+
+        .header {
+            animation: slideDown 1s ease;
+        }
+
+        .header-content {
+            animation: zoomIn 1s ease;
+        }
+
+        .search-box {
+            animation: slideInFromLeft 1s ease;
+        }
+
+        .categories {
+            animation: fadeInUp 1s ease;
+        }
+
+        .card {
+            animation: fadeIn 1.5s ease;
+        }
+
+        .logout-button {
+            animation: slideDown 1s ease;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: system-ui, -apple-system, sans-serif;
+            .card
         }
 
         body {
@@ -43,7 +249,7 @@
         }
 
         .header-title {
-            color: #C9AC8C;  /* Yangi rang */
+            color: #C9AC8C;
             font-size: 2.5rem;
             font-family: serif;
             letter-spacing: 0.05em;
@@ -52,31 +258,44 @@
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 32px 20px;
+            padding: 70px 20px;
         }
 
         .search-box {
             background: white;
-            padding: 16px;
-            border-radius: 8px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            padding: 30px;
+            border-radius: 23px;
+            cursor: pointer;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
             display: flex;
             gap: 8px;
+            z-index: 10;
+            width: 80%;
+        }
+
+        .form-box {
+            width: 100%;
+            position: absolute;
+            top: 167px;
+            left: 0;
+            display: flex;
+            justify-content: center;
+
         }
 
         .search-input {
             flex: 1;
-            padding: 8px 12px;
-            box-shadow:  0 1px 19px #4b5563;
-            border-radius: 6px;
+            box-shadow: 0 1px 5px #1da0f2;
+            border-radius: 15px;
             font-size: 0.875rem;
+            padding: 0 15px;
         }
 
         .search-button {
-            padding: 8px 16px;
+            padding: 10px 30px;
             background-color: #C9AC8C;
             box-shadow: 0 1px 35px #C9AC8C;
-            border-radius: 6px;
+            border-radius: 15px;
             cursor: pointer;
             color: white;
         }
@@ -85,9 +304,33 @@
             background-color: #b88a6b;
         }
 
+        .search-button:hover {
+            background-color: #b88a6b;
+        }
+
+        .search-button:hover {
+            background-color: #b88a6b;
+        }
+
         .search-button2 {
             padding: 8px 16px;
-            background-color: #C9AC8C;  /* Yangi rang */
+            background-color: #C9AC8C;
+            /* Yangi rang */
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            cursor: pointer;
+            position: absolute;
+            top: 24px !important;
+            left: 20px !important;
+            transition: all 0.3s ease;
+            color: white;
+            z-index: 10;
+        }
+
+        .search-button3 {
+            padding: 8px 16px;
+            background-color: #C9AC8C;
+            /* Yangi rang */
             border: 1px solid #e5e7eb;
             border-radius: 6px;
             cursor: pointer;
@@ -99,28 +342,142 @@
             z-index: 10;
         }
 
+        .search-button4 {
+            padding: 8px 16px;
+            background-color: #C9AC8C;
+            /* Yangi rang */
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            cursor: pointer;
+            position: absolute;
+            top: 24px !important;
+            right: 100px !important;
+            transition: all 0.3s ease;
+            color: white;
+            z-index: 10;
+        }
+
+        .search-button5 {
+            padding: 8px 16px;
+            background-color: #C9AC8C;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            cursor: pointer;
+            position: absolute;
+            top: 18px !important;
+            right: 150px !important;
+            transition: all 0.3s ease;
+            color: white;
+            z-index: 10;
+        }
+
+        S .search-button2:hover {
+            background-color: #b88a6b;
+            transform: scale(1.1);
+        }
+
+        .search-button3:hover {
+            background-color: #b88a6b;
+            transform: scale(1.1);
+        }
+
+        .search-button4:hover {
+            background-color: #b88a6b;
+            transform: scale(1.1);
+        }
+
+        .search-button3:active {
+            background-color: #b88a6b;
+        }
+
+        .search-button4:active {
+            background-color: #b88a6b;
+        }
+
         .search-button2:hover {
             background-color: #b88a6b;
             transform: scale(1.1);
+        }
+
+        .search-button5:hover {
+            background-color: #b88a6b;
+            transform: scale(1.1);
+        }
+
+        .search-button5:active {
+            background-color: #b88a6b;
         }
 
         .search-button2:active {
             background-color: #b88a6b;
         }
 
-        @keyframes gameInterface {
+        @keyframes gameInterface2 {
             0% {
                 opacity: 0;
                 transform: translateX(100px);
             }
+
             100% {
                 opacity: 1;
                 transform: translateX(0);
             }
         }
 
+        @keyframes gameInterface3 {
+            0% {
+                opacity: 0;
+                transform: translateY(100px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes gameInterface4 {
+            0% {
+                opacity: 0;
+                transform: scale(0);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes gameInterface5 {
+            0% {
+                opacity: 0;
+                transform: rotate(45deg);
+            }
+
+            100% {
+                opacity: 1;
+                transform: rotate(0);
+            }
+        }
+
         .search-button2 {
-            animation: gameInterface 1s ease-out;
+            animation: gameInterface2 1s ease-out;
+        }
+
+        .search-button3 {
+            animation: gameInterface3 1s ease-out;
+        }
+
+        .search-button4 {
+            animation: gameInterface4 1s ease-out;
+        }
+
+        .search-button5 {
+            animation: gameInterface5 1s ease-out;
+        }
+
+        .logout-button {
+            animation: gameInterface5 1s ease-out;
         }
 
         .categories {
@@ -130,28 +487,31 @@
 
         .categories h2 {
             color: #4b5563;
-            font-size: 1.25rem;
+            font-size: 14px;
             margin-bottom: 8px;
         }
 
-        .category-links {
-            display: flex;
-            justify-content: center;
-            gap: 16px;
-            color: #6b7280;
-            font-size: 0.875rem;
-        }
-
-        .category-links a {
-            padding: 6px 12px;
-            background-color: #f3f4f6;
-            border-radius: 6px;
-            text-decoration: none;
+        .category-links button {
+            padding: 10px 20px;
+            border-radius: 43px;
+            border: none;
+            color: black;
+            font-size: 16px;
+            cursor: pointer;
             transition: background-color 0.3s ease;
         }
 
-        .category-links a:hover {
-            background-color: #e5e7eb;
+        .category-links a {
+            padding: 10px 20px;
+            background-color: #f3f4f6;
+            border-radius: 43px;
+            text-decoration: #1b1b1b;
+            transition: background-color 0.3s ease;
+        }
+
+        .category-links button:hover {
+            background-color: #3191c5;
+            color: white;
         }
 
         .grid {
@@ -170,13 +530,50 @@
         }
 
         .card:hover {
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .button332 {
+            padding: 8px 16px;
+            background-color: #C9AC8C;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            cursor: pointer;
+            position: absolute;
+            top: 1350px !important;
+            right: 1100px !important;
+            transition: all 0.3s ease;
+            color: white;
+            z-index: 10;
         }
 
         .card-image {
             aspect-ratio: 1;
             width: 100%;
             object-fit: cover;
+        }
+
+        .logout-button {
+            position: absolute;
+            top: 20px !important;
+            right: 20px !important;
+            background-color: #b91c1c;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 0.875rem;
+            text-decoration: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            z-index: 1000;
+        }
+
+        .logout-button:hover {
+            background-color: #9f1239;
+            transform: scale(1.1);
+        }
+
+        .logout-button:active {
+            background-color: #881337;
         }
 
 
@@ -189,7 +586,7 @@
         .card-title {
             font-weight: 500;
             margin-bottom: 4px;
-            color: #C9AC8C;  /* Yangi rang */
+            color: #C9AC8C;
         }
 
         .card-years {
@@ -204,7 +601,7 @@
         }
 
         .card-link:hover {
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         @media (max-width: 768px) {
@@ -214,14 +611,161 @@
 
             .category-links {
                 flex-wrap: wrap;
-                gap: 12px;
+                gap: 120px;
             }
 
             .grid {
                 grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             }
         }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            gap: 10px;
+        }
+
+        .pagination-link {
+            text-decoration: none;
+            color: #333;
+            border: 1px solid #ddd;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .pagination-link:hover {
+            background-color: #f0f0f0;
+        }
+
+        .pagination-link.active {
+            background-color: #333;
+            color: #fff;
+            pointer-events: none;
+        }
+
+        body,
+        h1,
+        h2,
+        h3,
+        p,
+        a,
+        button {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .slider {
+            position: relative;
+            width: 100%;
+            max-width: 1000px;
+            margin: 20px auto;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            width: 100%;
+        }
+
+        .slide {
+            min-width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .prev,
+        .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            z-index: 10;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+        }
+
+        .prev {
+            left: 10px;
+        }
+
+        .next {
+            right: 10px;
+        }
+
+        @media screen and (max-width: 768px) {
+            .slider {
+                max-width: 100%;
+            }
+            .slide {
+            min-width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        
+        }
+
+        body {
+            animation: fadeIn 2s ease;
+            background-color: #f8f9fa;
+        }
+
+        @media (max-width: 768px) {
+            .header-title {
+                font-size: 1.8rem;
+            }
+
+            .search-box {
+                width: 90%;
+                padding: 20px;
+            }
+
+            .card {
+                width: 100%;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            }
+
+ 
+
+            @media (max-width: 480px) {
+                .header-title {
+                    font-size: 1.5rem;
+                }
+
+                .search-box {
+                    width: 100%;
+                    padding: 15px;
+                }
+
+                .card {
+                    padding: 10px;
+                }
+
+                .pagination-link {
+                    font-size: 0.8rem;
+                }
+
+                .prev,
+                .next {
+                    padding: 5px;
+                    font-size: 14px;
+                }
+            }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="icon"
+        href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQyiyYw7P3Ou4H0EB2CKR-39VbDLa9s1FyFg&s">
+
 </head>
 <body>
     <header class="header">
@@ -230,51 +774,229 @@
             <h1 class="header-title">TEMURIYLAR DAVRI ADABIYOTI</h1>
         </div>
     </header>
-
     <main class="container">
         <form method="GET">
-            <div class="search-box">
-                <input type="search" class="search-input" name="search" placeholder="Adiblar, kitoblar, maqolalar..." value="{{ request.GET.search }}">
-                <button class="search-button" type="submit">Qidirish</button>
+            <div class="form-box">
+                <div class="search-box">
+                    <input type="search" class="search-input" name="search" placeholder="Kerakligini izlang . . . ."
+                        value="{{ request.GET.search }}">
+                    <button class="search-button" type="submit">Izlash <i class="fa-brands fa-searchengin"></i></button>
+                </div>
             </div>
         </form>
+        <section class="slider">
+            <div class="slides">
+                <img src="/static/silde.png" onclick="window.location.href='/'" alt="Rasm 1" class="slide">
+                <img src="/static/silde2.png" onclick="window.location.href='/'" href="/" alt="Rasm 2" class="slide">
+                <img src="/static/silde3.png" onclick="window.location.href='/'" href="/" alt="Rasm 3" class="slide">
+                <img src="/static/silde4.png" onclick="window.location.href='/'" href="/" alt="Rasm 4" class="slide">
+            </div>
+            <button class="prev">&#10094;</button>
+            <button class="next">&#10095;</button>
+        </section>
 
-        <!-- Savol-Javob o'yini button -->
-        <a class="search-button2" href="/game/">Savol-Javob O`yin</a>
+        <button onclick="router('/game/')" class="search-button2">Savol-Javob O`yin <i
+                class="fa-solid fa-scroll"></i></button>
 
         <section class="categories">
-            <h2>Asosiy kategoriyalar</h2>
+            <h2>Asosiy kategoriyalar <i class="fa-solid fa-list"> </i></h2>
             <div class="category-links">
-                <a href="?genre=">Hamma kitoblar</a>
-                <a href="?genre=Diniy">Diniy kitoblar</a>
-                <a href="?genre=Jadid Adabiyoti">Jadid Adabiyoti</a>
-                <a href="?genre=Zamonaviy">Zamonaviy kitoblar</a>
-                <a href="?genre=Ishqiy">Ishqiy kitoblar</a>
+                <button onclick="router('?genre=')" class="category-links">Hamma kitoblar </button>
+                <button onclick="router('?genre=Diniy')" class="category-links">Diniy kitoblar</button>
+                <button onclick="router('?genre=Jadid Adabiyoti')" class="category-links">Jadid Adabiyoti</button>
+                <button onclick="router('?genre=Zamonaviy')" class="category-links">Zamonaviy kitoblar</button>
+                <button onclick="router('?genre=Ishqiy')" class="category-links">Ishqiy kitoblar</button>
             </div>
         </section>
-
-        <section class="grid">
-            {% for book in books %}
-            <div class="card">
-                <!-- Wrap the entire card in an anchor tag -->
-                <a href="{% url 'bookdetails' book.id %}" class="card-link">
-                    {% if book.book_image %}
-                    <img src="{{ book.book_image.url }}" class="card-image" alt="{{ book.title }}">
-                    {% else %}
-                    <img src="/static/imagenot.png" class="card-image" alt="{{ book.title }}">
+    <body>
+<button class="button332" onclick="window.open('https://t.me/rootuzadmin_bot', '_blank')">
+        Taklif va Shikoyatlar uchun bosing !
+    </button>
+    </body>
+        <main class="container">
+            <section class="grid">
+                {% for book in books %}
+                <div class="card">
+                    <a href="{% url 'bookdetails' book.id %}" class="card-link">
+                        {% if book.book_image %}
+                        <img src="{{ book.book_image.url }}" class="card-image" alt="{{ book.title }}">
+                        {% else %}
+                        <img src="/static/imagenot.png" class="card-image" alt="{{ book.title }}">
+                        {% endif %}
+                        <div class="card-content">
+                            <h3 class="card-title">{{ book.title }}</h3>
+                            <p class="card-years">{{ book.year.year }} | {{ book.pages }} sahifa</p>
+                            <p><strong>Muallif:</strong> {{ book.author }}</p>
+                            <p><strong>Janr:</strong> {{ book.get_genre_display }}</p>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+            
+            </section>
+            <div class="pagination">
+                    {% if books.has_previous %}
+                    <a href="?page={{ books.previous_page_number }}" class="pagination-link">Ortga</a>
                     {% endif %}
-                    <div class="card-content">
-                        <h3 class="card-title">{{ book.title }}</h3>
-                        <p class="card-years">{{ book.year.year }} | {{ book.pages }} sahifa</p>
-                        <p><strong>Muallif:</strong> {{ book.author }}</p>
-                        <p><strong>Janr:</strong> {{ book.get_genre_display }}</p>
-                    </div>
-                </a>
-            </div>
-            {% empty %}
-                <p>Hech qanday kitob topilmadi.</p>
-            {% endfor %}
-        </section>
+
+                    {% for page_num in books.paginator.page_range %}
+                    <a href="?page={{ page_num }}"
+                        class="pagination-link {% if page_num == books.number %} active {% endif %}">
+                        {{ page_num }}
+                    </a>
+                    {% endfor %}
+
+                    {% if books.has_next %}
+                    <a href="?page={{ books.next_page_number }}" class="pagination-link">Orqaga</a>
+                    {% endif %}
+                </div>
+                <div class="pagination">
+                    {% if page_obj.has_previous %}
+                    <a href="?page={{ page_obj.previous_page_number }}" class="pagination-link">Orqaga</a>
+                    {% endif %}
+
+                    {% for page_num in page_obj.paginator.page_range %}
+                    <a href="?page={{ page_num }}" class="pagination-link
+            {% if page_num == page_obj.number %} active {% endif %}">
+                        {{ page_num }}
+                    </a>
+                    {% endfor %}
+
+                    {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}" class="pagination-link">Keyingi</a>
+                    {% endif %}
+                </div>
+        </main>
     </main>
+    <button id="dark-mode-toggle" class="dark-mode-btn">🌓</button>
+
+    <!-- Check if user is authenticated -->
+{% if not user.is_authenticated %}
+    <div class="auth-buttons">
+        <button onclick="window.location.href='{% url 'login' %}'" class="search-button3">Login</button>
+        <button onclick="window.location.href='{% url 'signup' %}'" class="search-button4">Sign Up</button>
+    </div>
+
+{% endif %}
+
+    {% if user.is_authenticated %}
+    <a href="{% url 'custom_logout' %}" class="logout-button" onclick="return confirmLogout()">Chiqish <i
+            class="fa-solid fa-right-from-bracket"></i></a>
+    {% endif %}
+    {% if user.is_authenticated %}
+    <div class="search-button5">
+        <span class="user-details">
+            Foydalanuvchi: {{ user.username }}
+        </span>
+        {% endif %}
+
+
+        <script>
+            function confirmLogout() {
+                return confirm("Rostan ham chiqmoqchimisiz?");
+            }
+            function router(url) {
+                window.location.href = url;
+            }
+
+        </script>
+        <script>
+            let currentSlide = 0;
+            const slides = document.querySelector('.slides');
+            const totalSlides = slides.children.length;
+
+            function moveSlide(step) {
+                currentSlide = (currentSlide + step + totalSlides) % totalSlides;
+                const offset = -currentSlide * 100;
+                slides.style.transform = `translateX(${offset}%)`;
+            }
+
+            let autoSlideInterval = setInterval(() => moveSlide(1), 3000);
+
+            document.querySelector('.prev').addEventListener('click', () => {
+                clearInterval(autoSlideInterval);
+                moveSlide(-1);
+                autoSlideInterval = setInterval(() => moveSlide(1), 3000);
+            });
+
+            document.querySelector('.next').addEventListener('click', () => {
+                clearInterval(autoSlideInterval);
+                moveSlide(1);
+                autoSlideInterval = setInterval(() => moveSlide(1), 3000);
+            });
+
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            slides.addEventListener('touchstart', (e) => {
+                touchStartX = e.touches[0].clientX;
+            });
+
+            slides.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].clientX;
+                handleGesture();
+            });
+
+            function handleGesture() {
+                const threshold = 50;
+                const swipeDistance = touchEndX - touchStartX;
+
+                if (swipeDistance > threshold) {
+                    clearInterval(autoSlideInterval);
+                    moveSlide(-1);
+                    autoSlideInterval = setInterval(() => moveSlide(1), 3000);
+                } else if (swipeDistance < -threshold) {
+                    clearInterval(autoSlideInterval);
+                    moveSlide(1);
+                    autoSlideInterval = setInterval(() => moveSlide(1), 3000);
+                }
+            }
+        </script>
+        <script>
+            window.addEventListener('resize', function () {
+                const screenWidth = window.innerWidth;
+
+                if (screenWidth < 768) {
+                } else {
+                }
+            });
+        </script>
+
+<script>
+    // Dark mode toggle
+    const darkModeToggle = document.getElementById('dark-mode-toggle');
+    const body = document.body;
+
+    // Check if dark mode is enabled in localStorage
+    if(localStorage.getItem('dark-mode') === 'enabled') {
+        body.classList.add('dark-mode');
+    }
+
+    // Toggle dark mode when the button is clicked
+    darkModeToggle.addEventListener('click', () => {
+        body.classList.toggle('dark-mode');
+
+        // Save the dark mode state to localStorage
+        if (body.classList.contains('dark-mode')) {
+            localStorage.setItem('dark-mode', 'enabled');
+        } else {
+            localStorage.removeItem('dark-mode');
+        }
+    });
+
+    // Prevent dark mode from affecting images
+    const images = document.querySelectorAll('img');
+    images.forEach(img => {
+        img.addEventListener('load', () => {
+            if (body.classList.contains('dark-mode')) {
+                img.style.filter = '.header-pattern';
+            }
+        });
+    });
+</script>
+
+
+
 </body>
+
 </html>
