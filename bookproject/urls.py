@@ -17,7 +17,8 @@ urlpatterns = [
     path('12/', views.task_list, name='task_list'),  # Tasklar ro'yxati
     path('delete/<int:task_id>/', views.delete_task, name='delete_task'),
     path('view-text/', views.view_text, name='view_text'),
-path('finished/<int:task_id>/', views.finished, name='mark_as_finished'),
+
+    path('finished/<int:task_id>/', views.finished, name='mark_as_finished'),
 
 
     path('', views.Asosiypanel.as_view(), name='base'),

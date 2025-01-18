@@ -190,3 +190,5 @@ def finished(request, task_id):
     task.status = "Completed"
     task.save()
     return redirect('/12/')
+
+
