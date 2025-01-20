@@ -23,7 +23,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 CSRF_TRUSTED_ORIGINS = [
-     'https://6fd4-185-213-229-2.ngrok-free.app',
+     ' https://temuriylar.up.railway.app',
 ]
 
 
