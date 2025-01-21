@@ -22,7 +22,7 @@ SECRET_KEY = 'django-insecure-p0*4knb=wrzs2nqkr@aixb43^(nx7xaa4uda86deoalv#3j7bm
 DEBUG = True
 
 
-ALLOWED_HOSTS = ['temuriylar.up.railway.app',]
+ALLOWED_HOSTS = ['temuriylar.up.railway.app','localhost']
 CSRF_TRUSTED_ORIGINS = ['https://temuriylar.up.railway.app',]
 
 

@@ -234,17 +234,18 @@
 
     </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css">
-<link rel="icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQyiyYw7P3Ou4H0EB2CKR-39VbDLa9s1FyFg&s">
+   <link rel="icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQyiyYw7P3Ou4H0EB2CKR-39VbDLa9s1FyFg&s">
 
 </head>
 <body>
     <header class="header">
         <a href="/" class="logo">Badiiyat</a>
         <nav class="nav">
-            <a href="/">Bosh sahifa</a>
-            <a href="/?genre=">Kitoblar</a>
+            <a href="/">Bosh sahifa  </a>
+            <a href="/?genre=">Kitoblar  </a>
             <div class="img">
-                <img src="https://s3-alpha-sig.figma.com/img/cd50/92f3/31b6a258d24333f5bd374d28d64f9a0a?Expires=1737331200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=ari~aQs~JYrNJ6eJNd2pzt4~Qa613S4TQycqu1jFobaEQqhR7R~zz5Bs65UfdKxW~0cGnNEsMAJAIfXmYbSJxZGWe~1loFFS~Zet4ksai8zd1d6B1T7ds2E5aoxEARItvMz~wTncHJz~fGEGaJyNJLHsNBfg39MwjvC6ad9ZCKQtv54Qx8q-gj5bnGlSIGG~d5MTbFyG9z437C2DkmUQn2T0M3ZJPDT6PsEEylHPmIvaCVFr2QAmec4R7V3baInTJn7r6FjsfHV1gLVReLMjwNpmfHVT253HX621RPNsoDKbaK8NWQBEeOqXKiSP3YmmdFsxPuQVO3xE5uRRlCQT1A__" alt="dsdd">
+            <img src="https://s3-alpha-sig.figma.com/img/cd50/92f3/31b6a258d24333f5bd374d28d64f9a0a?Expires=1737331200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=ari~aQs~JYrNJ6eJNd2pzt4~Qa613S4TQycqu1jFobaEQqhR7R~zz5Bs65UfdKxW~0cGnNEsMAJAIfXmYbSJxZGWe~1loFFS~Zet4ksai8zd1d6B1T7ds2E5aoxEARItvMz~wTncHJz~fGEGaJyNJLHsNBfg39MwjvC6ad9ZCKQtv54Qx8q-gj5bnGlSIGG~d5MTbFyG9z437C2DkmUQn2T0M3ZJPDT6PsEEylHPmIvaCVFr2QAmec4R7V3baInTJn7r6FjsfHV1gLVReLMjwNpmfHVT253HX621RPNsoDKbaK8NWQBEeOqXKiSP3YmmdFsxPuQVO3xE5uRRlCQT1A__" alt="dsdd">
+
             </div>
         </nav>
     </header>
@@ -253,9 +254,9 @@
         <div class="book-details">
             <div class="book-cover">
                 {% if book.book_image %}
-                    <img src="{{ book.book_image.url }}" alt="{{ book.title }} rasmi">
+                <img src="{{ book.book_image.url }}" alt="{{ book.title }} rasmi">
                 {% else %}
-                    <img src="/static/imagenot.png" alt="Kitob rasmi yo'q">
+                <img src="/static/imagenot.png" alt="Kitob rasmi yo'q">
                 {% endif %}
             </div>
             <div class="book-info">
@@ -283,14 +284,15 @@
                     </div>
                 </div>
                 <div class="book-description">
-                    <h2 style="display: flex; align-items: center; gap: 10px;">
-                        To’liq ma’lumot
-                        <i class="fa-solid fa-arrow-down-short-wide"></i>
-                        <div class="more-info-line"></div>
-                    </h2>
-                    <p id="book-bio">{{ book.bio|truncatechars:300 }}</p>
+                 <h2 style="display: flex; align-items: center; gap: 10px;">
+                     To’liq ma’lumot
+                     <i class="fa-solid fa-arrow-down-short-wide"></i>
+                     <div class="more-info-line"></div>
+                 </h2>
+
+                    <p id="book-bio">{{ book.bio }}</p>
                     {% if book.bio|length > 300 %}
-                        <span id="more-btn" onclick="toggleDescription()" style="color: #C9AC8C; cursor: pointer;">...more</span>
+                    <span id="more-btn" onclick="toggleDescription()" style="color: #C9AC8C; cursor: pointer;">...more</span>
                     {% endif %}
                 </div>
             </div>
@@ -298,25 +300,27 @@
 
         <section class="related-works">
             <h2>Boshqa kitoblar</h2>
-            <div class="book-grid">
-                {% for related_book in related_books %}
-                    <div class="book-card">
-                        <a href="{% url 'bookdetails' related_book.id %}" class="book-card-link">
-                            <div class="book-card-cover">
-                                {% if related_book.book_image %}
-                                    <img src="{{ related_book.book_image.url }}" alt="{{ related_book.title }} rasmi">
-                                {% else %}
-                                    <img src="/static/imagenot.png" alt="Kitob rasmi yo'q">
-                                {% endif %}
-                            </div>
-                            <div class="book-card-title">{{ related_book.title }}</div>
-                            <div class="book-card-author">{{ related_book.author }}</div>
-                        </a>
-                    </div>
-                {% empty %}
-                    <p>Hozirda boshqa kitoblar mavjud emas.</p>
-                {% endfor %}
+<div class="book-grid">
+    {% for related_book in related_books %}
+    <div class="book-card">
+        <a href="{% url 'bookdetails' related_book.id %}" class="book-card-link">
+            <div class="book-card-cover">
+                {% if related_book.book_image %}
+                <img src="{{ related_book.book_image.url }}" alt="{{ related_book.title }} rasmi">
+                {% else %}
+                <img src="/static/imagenot.png" alt="Kitob rasmi yo'q">
+                {% endif %}
             </div>
+            <div class="book-card-title">{{ related_book.title }}</div>
+            <div class="book-card-author">{{ related_book.author }}</div>
+        </a>
+    </div>
+    {% empty %}
+    <p>Hozirda boshqa kitoblar mavjud emas.</p>
+    {% endfor %}
+</div>
+
+
         </section>
     </main>
 
@@ -340,3 +344,6 @@
     </footer>
 </body>
 </html>
+
+
+

@@ -37,7 +37,10 @@ body.dark-mode img {
 
 body.dark-mode .header-pattern {
     filter: none;
+
 }
+
+
 
 body.dark-mode .header {
     background-color: #C9AC8C !important;
@@ -235,7 +238,12 @@ body.dark-mode .dark-mode-btn:hover {
             inset: 0;
             opacity: 0.1;
             background-image: url('/static/Group2.png');
-            background-size: 950px;
+            object-fit: cover;
+            background-repeat: no-repeat;
+            width: 100%;
+            background-size: cover !important;
+            background-position: center ;
+            height: 400px;
         }
 
         .header-content {
@@ -868,7 +876,10 @@ body.dark-mode .dark-mode-btn:hover {
                 </div>
         </main>
     </main>
-    <button id="dark-mode-toggle" class="dark-mode-btn">🌓</button>
+    <button id="dark-mode-toggle" class="dark-mode-btn">
+        <i class="fa-solid fa-sun" id="sun"></i>
+        <i class="fa-solid fa-moon" id="mon"></i>
+    </button>
 
     <!-- Check if user is authenticated -->
 {% if not user.is_authenticated %}
@@ -966,10 +977,15 @@ body.dark-mode .dark-mode-btn:hover {
     // Dark mode toggle
     const darkModeToggle = document.getElementById('dark-mode-toggle');
     const body = document.body;
+    const mon = document.getElementById("mon")
+    const {style} = document.getElementById("sun")
 
     // Check if dark mode is enabled in localStorage
     if(localStorage.getItem('dark-mode') === 'enabled') {
         body.classList.add('dark-mode');
+        mon.style.display = "none"
+        style.display = "block"
+
     }
 
     // Toggle dark mode when the button is clicked
@@ -979,8 +995,13 @@ body.dark-mode .dark-mode-btn:hover {
         // Save the dark mode state to localStorage
         if (body.classList.contains('dark-mode')) {
             localStorage.setItem('dark-mode', 'enabled');
+            mon.style.display = "none"
+            style.display = "block"
         } else {
             localStorage.removeItem('dark-mode');
+             mon.style.display = "block"
+             style.display = "none"
+
         }
     });
 
