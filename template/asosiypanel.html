@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="uz">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,8 +25,8 @@
 }
 
 body.dark-mode {
-    background-color: #0a180d;
-    color: #e0e0e0;
+    background-color: #333;
+    color: #000000;
 }
 
 
@@ -52,7 +51,7 @@ body.dark-mode .header-title {
 
 /* Search box */
 body.dark-mode .search-box {
-    background: #333;
+    background: rgba(0, 0, 0, 0.92);
     color: #f8f9fa;
 }
 
@@ -253,7 +252,7 @@ body.dark-mode .dark-mode-btn:hover {
             height: 100%;
             display: flex;
             align-items: center;
-            padding: 0 20px;
+            padding: 148px 30px;
         }
 
         .header-title {
@@ -383,6 +382,10 @@ body.dark-mode .dark-mode-btn:hover {
             background-color: #b88a6b;
             transform: scale(1.1);
         }
+        .button332:hover {
+            background-color: #b88a6b;
+            transform: scale(1.1);
+        }
 
         .search-button3:hover {
             background-color: #b88a6b;
@@ -397,6 +400,9 @@ body.dark-mode .dark-mode-btn:hover {
         .search-button3:active {
             background-color: #b88a6b;
         }
+        .button332:active {
+            background-color: #b88a6b;
+        }
 
         .search-button4:active {
             background-color: #b88a6b;
@@ -407,16 +413,15 @@ body.dark-mode .dark-mode-btn:hover {
             transform: scale(1.1);
         }
 
-        .search-button5:hover {
+        .img:active {
+            background-color: #b88a6b;
+        }
+        .img:hover {
             background-color: #b88a6b;
             transform: scale(1.1);
         }
 
-        .search-button5:active {
-            background-color: #b88a6b;
-        }
-
-        .search-button2:active {
+        .img:active {
             background-color: #b88a6b;
         }
 
@@ -471,6 +476,13 @@ body.dark-mode .dark-mode-btn:hover {
         .search-button2 {
             animation: gameInterface2 1s ease-out;
         }
+        .button332 {
+        animation: gameInterface3 1s ease-out;
+        }
+        .img {
+        animation: gameInterface3 1s ease-out;
+        }
+
 
         .search-button3 {
             animation: gameInterface3 1s ease-out;
@@ -547,12 +559,13 @@ body.dark-mode .dark-mode-btn:hover {
             border-radius: 6px;
             cursor: pointer;
             position: absolute;
-            top: 1350px !important;
-            right: 1100px !important;
+            top: 61px !important;
+            left: 20px !important;
             transition: all 0.3s ease;
             color: white;
             z-index: 10;
-        }
+                    }
+
 
         .card-image {
             aspect-ratio: 1;
@@ -743,7 +756,6 @@ body.dark-mode .dark-mode-btn:hover {
                 box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             }
 
- 
 
             @media (max-width: 480px) {
                 .header-title {
@@ -769,13 +781,44 @@ body.dark-mode .dark-mode-btn:hover {
                     font-size: 14px;
                 }
             }
+        }
     </style>
+    <style>
+        .img-link {
+             position: absolute;
+             top: 8px;
+             right: 35px;
+             width: 25px;
+             height: 25px;
+             z-index: 9999;
+        }
+
+        .img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50% ;
+            overflow: hidden;
+            display: flex ;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="icon"
         href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQyiyYw7P3Ou4H0EB2CKR-39VbDLa9s1FyFg&s">
 
 </head>
 <body>
+{% if user.is_authenticated %}
+    <nav>
+        <a href="profile/edit/" class="img-link">
+            <img src="/static/1134.png" alt="dsdd" class="img">
+        </a>
+    </nav>
+{% endif %}
+
+
     <header class="header">
         <div class="header-pattern"></div>
         <div class="header-content">
@@ -805,7 +848,6 @@ body.dark-mode .dark-mode-btn:hover {
 
         <button onclick="router('/game/')" class="search-button2">Savol-Javob O`yin <i
                 class="fa-solid fa-scroll"></i></button>
-
         <section class="categories">
             <h2>Asosiy kategoriyalar <i class="fa-solid fa-list"> </i></h2>
             <div class="category-links">
@@ -881,26 +923,12 @@ body.dark-mode .dark-mode-btn:hover {
         <i class="fa-solid fa-moon" id="mon"></i>
     </button>
 
-    <!-- Check if user is authenticated -->
 {% if not user.is_authenticated %}
     <div class="auth-buttons">
         <button onclick="window.location.href='{% url 'login' %}'" class="search-button3">Login</button>
         <button onclick="window.location.href='{% url 'signup' %}'" class="search-button4">Sign Up</button>
     </div>
-
 {% endif %}
-
-    {% if user.is_authenticated %}
-    <a href="{% url 'custom_logout' %}" class="logout-button" onclick="return confirmLogout()">Chiqish <i
-            class="fa-solid fa-right-from-bracket"></i></a>
-    {% endif %}
-    {% if user.is_authenticated %}
-    <div class="search-button5">
-        <span class="user-details">
-            Foydalanuvchi: {{ user.username }}
-        </span>
-        {% endif %}
-
 
         <script>
             function confirmLogout() {
@@ -909,7 +937,6 @@ body.dark-mode .dark-mode-btn:hover {
             function router(url) {
                 window.location.href = url;
             }
-
         </script>
         <script>
             let currentSlide = 0;

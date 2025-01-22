@@ -14,9 +14,10 @@ urlpatterns = [
     path('signup/', views.signup_view, name='signup'),
     path('logout/',auth_views.LogoutView.as_view(next_page='/'), name='logout'),
     path('custom_logout/',views.custom_logout,name='custom_logout'),
-    path('12/', views.task_list, name='task_list'),  # Tasklar ro'yxati
+    path('12/', views.task_list, name='task_list'),
     path('delete/<int:task_id>/', views.delete_task, name='delete_task'),
     path('view-text/', views.view_text, name='view_text'),
+    path('profile/edit/',views.edit_profile,name='edit_profile'),
 
     path('finished/<int:task_id>/', views.finished, name='mark_as_finished'),
 

@@ -24,6 +24,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.template.loader import render_to_string
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import logout
+from .forms import UserChangeForm
 
 @login_required(login_url='signup')
 def quizgame(request):
@@ -192,3 +193,18 @@ def finished(request, task_id):
     return redirect('/12/')
 
 
+
+
+
+@login_required(login_url='login')
+def edit_profile(request):
+    user = request.user
+    if request.method == 'POST':
+        form = UserChangeForm(request.POST, instance=user)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Profilingiz yangilandi')
+            return redirect('base')  # Yangi profil sahifasiga yo'naltirish
+    else:
+        form = UserChangeForm(instance=user)
+    return render(request, 'edit_profile.html', {'form': form})
