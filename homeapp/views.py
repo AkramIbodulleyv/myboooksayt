@@ -25,6 +25,9 @@ from django.template.loader import render_to_string
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import logout
 from .forms import UserChangeForm
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import Task
+
 
 @login_required(login_url='signup')
 def quizgame(request):
@@ -68,7 +71,6 @@ def login_view(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                messages.success(request, 'You are now logged in')
                 return redirect('base')
             else:
                 messages.error(request, 'Username or password is incorrect')
@@ -102,7 +104,6 @@ class Asosiypanel(ListView):
 
 def custom_logout(request):
     logout(request)
-    messages.success(request, 'Siz muvaffaqiyatli chiqdingiz!')
     return redirect('base')
 
 
@@ -161,8 +162,6 @@ def verify_email_view(request):
     return render(request, 'verify_email.html')
 
 
-from django.shortcuts import render, redirect, get_object_or_404
-from .models import Task
 
 
 def task_list(request):
@@ -203,8 +202,7 @@ def edit_profile(request):
         form = UserChangeForm(request.POST, instance=user)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Profilingiz yangilandi')
-            return redirect('base')  # Yangi profil sahifasiga yo'naltirish
+            return redirect('base')
     else:
         form = UserChangeForm(instance=user)
     return render(request, 'edit_profile.html', {'form': form})

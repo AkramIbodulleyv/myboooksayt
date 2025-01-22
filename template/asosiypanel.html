@@ -516,7 +516,7 @@
         }
 
         .categories h2 {
-            color: #4b5563;
+            color: var(--text);
             font-size: 14px;
             margin-bottom: 8px;
         }
@@ -820,7 +820,7 @@
     <link rel="icon"
         href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQyiyYw7P3Ou4H0EB2CKR-39VbDLa9s1FyFg&s">
        
-        <script src="{% static 'js/main.js' %}"></script>
+
 
 </head>
 
@@ -864,8 +864,7 @@
         <button onclick="router('{% url 'snakegame' %}')" class="search-button2">Savol-Javob O`yin <i
                 class="fa-solid fa-scroll"></i></button>
         <section class="categories">
-            <h2>Asosiy kategoriyalar <i class="fa-solid fa-list"> </i></h2>
-            <div class="category-links">
+ <h2 style="color: var(--text);">Asosiy kategoriyalar <i class="fa-solid fa-list"></i></h2>            <div class="category-links">
                 <button onclick="router('?genre=')" class="category-links">Hamma kitoblar </button>
                 <button onclick="router('?genre=Diniy')" class="category-links">Diniy kitoblar</button>
                 <button onclick="router('?genre=Jadid Adabiyoti')" class="category-links">Jadid Adabiyoti</button>
@@ -1059,11 +1058,11 @@ darkModeToggle.addEventListener('click', () => {
 const themFUnctions = ()=> {
     const darkMode = JSON.parse(localStorage.getItem('dark-mode'));
     if ( !darkMode) {
-        toggleFunction("light");  
+        toggleFunction("light");
     }else{
         toggleFunction(darkMode);
     }
-    
+
 
 }
 
@@ -1081,5 +1080,4 @@ themFUnctions()
 
    
 </body>
-
 </html>

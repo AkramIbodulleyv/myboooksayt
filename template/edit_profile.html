@@ -9,14 +9,14 @@
     <style>
         :root[data-theme="dark"] {
             --body: #1a202c;
-            --text: blue;
+            --text: #ffffff;
            
 
         }
 
         :root[data-theme="light"] {
             --body: #edf2f7;
-            --text: #212529;
+            --text: rgba(0, 0, 0, 0.92);
             
 
 
@@ -87,20 +87,40 @@
 
 
 
-        .header-title {
+.search-button3 {
+            padding: 8px 16px;
+            background-color: #C9AC8C;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            cursor: pointer;
             position: absolute;
-            color: #C9AC8C;
-            font-size: 2.5rem;
-            font-family: serif;
-            letter-spacing: 0.05em;
-            left: 460px;
-            top: 40px;
-            padding: 20px;
-            border: 5px solid #08a7f3;
-            border-radius: 15px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5),
-                inset 0 0 10px rgb(8, 167, 243);
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.53) 0%, rgba(255, 255, 255, 0.53) 100%);
+            top: 24px !important;
+            left: 20px !important;
+            transition: all 0.3s ease;
+            color: white;
+            z-index: 10;
+            font-family: "Roboto", Arial, sans-serif;
+        }
+ .search-button3:hover {
+            background-color: #b88a6b;
+            transform: scale(1.1);
+        }
+         .search-button3:active {
+            background-color: #b88a6b;
+        }
+ .search-button3 {
+            animation: gameInterface3 1s ease-out;
+        }
+@keyframes gameInterface3 {
+            0% {
+                opacity: 0;
+                transform: translateY(100px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         body{
             background-color: var(--body);
@@ -108,14 +128,20 @@
         h1{
             color: var(--text);
             position: absolute;
-            left: 510px;
+            left: 530px;
             top: 40px;
+            font-family: inherit;
         }
     </style>
 </head>
 
 <body >
     <h1 class="header-title1"> Shahsiy Akauntingizni o'zgartiring</h1>
+
+<button class="search-button3" onclick="location.href='{% url 'base' %}';">
+    <i class="fa-solid fa-less-than"></i>   Orqaga qaytish
+</button>
+
 
 
     {% if user.is_authenticated %}
