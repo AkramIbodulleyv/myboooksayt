@@ -1,11 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Profil Qism</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="icon" href="/static/1145.jpg">
     <style>
+        :root[data-theme="dark"] {
+            --body: #1a202c;
+            --text: blue;
+           
+
+        }
+
+        :root[data-theme="light"] {
+            --body: #edf2f7;
+            --text: #212529;
+            
+
+
+        }
+
         .logout-button {
             position: absolute;
             top: 20px !important;
@@ -29,148 +45,198 @@
         .logout-button:active {
             background-color: #881337;
         }
-        /* Umumiy sahifa uchun asosiy dizayn */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
 
-.container {
-    background-color: #ffffff;
-    border-radius: 8px;
-    padding: 20px;
-    width: 100%;
-    max-width: 500px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
 
-h2 {
-    text-align: center;
-    color: #333;
-}
 
-/* Formani chiroyli qilish */
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
 
-form input, form button {
-    padding: 12px;
-    font-size: 16px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}
+        h2 {
+            text-align: center;
+            color: #333;
+        }
 
-form input:focus, form button:focus {
-    outline: none;
-    border-color: #0056b3;
-}
 
-/* Submit tugmasi */
-.submit-btn {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
 
-.submit-btn:hover {
-    background-color: #45a049;
-}
+        form input,
+        form button {
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
 
-/* Orqaga qaytish tugmasi */
-.back-btn {
-    display: block;
-    text-align: center;
-    margin-top: 15px;
-    color: #007bff;
-    text-decoration: none;
-}
+        form input:focus,
+        form button:focus {
+            outline: none;
+            border-color: #0056b3;
+        }
 
-.back-btn:hover {
-    text-decoration: underline;
-}
 
+
+        .header-title {
+            position: absolute;
+            color: #C9AC8C;
+            font-size: 2.5rem;
+            font-family: serif;
+            letter-spacing: 0.05em;
+            left: 460px;
+            top: 40px;
+            padding: 20px;
+            border: 5px solid #08a7f3;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5),
+                inset 0 0 10px rgb(8, 167, 243);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.53) 0%, rgba(255, 255, 255, 0.53) 100%);
+        }
+        body{
+            background-color: var(--body);
+        }
+        h1{
+            color: var(--text);
+            position: absolute;
+            left: 510px;
+            top: 40px;
+        }
     </style>
 </head>
-<body>
+
+<body >
+    <h1 class="header-title1"> Shahsiy Akauntingizni o'zgartiring</h1>
 
 
-{% if user.is_authenticated %}
+    {% if user.is_authenticated %}
     <a href="{% url 'custom_logout' %}" class="logout-button" onclick="return confirmLogout()">Akauntdan Chiqish <i
             class="fa-solid fa-right-from-bracket"></i></a>
     {% endif %}
+    <form method="POST" class="register-form" id="register-form">
+        {% csrf_token %}
 
-
-<form method="POST" class="register-form" id="register-form">
-    {% csrf_token %}
-
-    <div class="form-group">
-        <label for="first_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-        <input type="text" name="first_name" id="first_name" placeholder="Ism" value="{{ form.first_name.value }}">
-    </div>
-    {% if form.errors.first_name %}
+        <div class="form-group">
+            <label for="first_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
+            <input type="text" name="first_name" id="first_name" placeholder="Ism" value="{{ form.first_name.value }}">
+        </div>
+        {% if form.errors.first_name %}
         <div class="invalid-feedback">
             {{ form.errors.first_name }}
         </div>
-    {% endif %}
+        {% endif %}
 
-    <div class="form-group">
-        <label for="last_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-        <input type="text" name="last_name" id="last_name" placeholder="Familiya" value="{{ form.last_name.value }}">
-    </div>
-    {% if form.errors.last_name %}
+        <div class="form-group">
+            <label for="last_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
+            <input type="text" name="last_name" id="last_name" placeholder="Familiya"
+                value="{{ form.last_name.value }}">
+        </div>
+        {% if form.errors.last_name %}
         <div class="invalid-feedback">
             {{ form.errors.last_name }}
         </div>
-    {% endif %}
+        {% endif %}
 
-    <div class="form-group">
-        <label for="username"><i class="zmdi zmdi-account"></i></label>
-        <input type="text" name="username" id="username" placeholder="Foydalanuvchi nomi" value="{{ form.username.value }}">
-    </div>
-    {% if form.errors.username %}
+        <div class="form-group">
+            <label for="username"><i class="zmdi zmdi-account"></i></label>
+            <input type="text" name="username" id="username" placeholder="Foydalanuvchi nomi"
+                value="{{ form.username.value }}">
+        </div>
+        {% if form.errors.username %}
         <div class="invalid-feedback">
             {{ form.errors.username }}
         </div>
-    {% endif %}
+        {% endif %}
 
-    <div class="form-group">
-        <label for="email"><i class="zmdi zmdi-email"></i></label>
-        <input type="email" name="email" id="email" placeholder="Email" value="{{ form.email.value }}">
-    </div>
-    {% if form.errors.email %}
+        <div class="form-group">
+            <label for="email"><i class="zmdi zmdi-email"></i></label>
+            <input type="email" name="email" id="email" placeholder="Email" value="{{ form.email.value }}">
+        </div>
+        {% if form.errors.email %}
         <div class="invalid-feedback">
             {{ form.errors.email }}
         </div>
-    {% endif %}
+        {% endif %}
 
-    <div class="form-group form-button">
-        <button type="submit" name="signup" id="signup" class="form-submit">
-            Saqlash
-        </button>
-    </div>
-</form>
-
-
+        <div class="form-group form-button">
+            <button type="submit" name="signup" id="signup" class="form-submit">
+                Saqlash
+            </button>
+        </div>
+    </form>
 </body>
-
-
-
 <script>
-            function confirmLogout() {
-                return confirm("Rostan ham chiqmoqchimisiz?");
-            }
-            function router(url) {
-                window.location.href = url;
-            }
+    function confirmLogout() {
+        return confirm("Rostan ham chiqmoqchimisiz?");
+    }
+    function router(url) {
+        window.location.href = url;
+    }
+</script>
+<script>
+    const headerTitle = document.querySelector('.header-title');
+    let x = 500;
+    let y = 50;
+
+    function changeColor() {
+        const randomTextColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
+        headerTitle.style.color = randomTextColor;
+    }
+
+
+
+    setInterval(changeColor, 1000);
+
+    const body = document.body;
+    const mon = document.getElementById("mon");
+    const sunIcon = document.getElementById("sun");
+
+    const customTheme = (theme) => {
+        const elRoot = document.documentElement;
+        elRoot.setAttribute("data-theme", theme);
+        localStorage.setItem('dark-mode', JSON.stringify(theme));
+
+        if (theme === "dark") {
+            mon.style.display = "none";
+            sunIcon.style.display = "block";
+            body.classList.add('dark-mode');
+        } else {
+            mon.style.display = "block";
+            sunIcon.style.display = "none";
+            body.classList.remove("dark-mode");
+        }
+    };
+
+    const toggleFunction = (darkMode) => {
+        if (darkMode === "dark") {
+            customTheme("dark");
+        } else {
+            customTheme("light");
+        }
+    };
+
+
+
+    const themFUnctions = () => {
+        const darkMode = JSON.parse(localStorage.getItem('dark-mode'));
+        if (!darkMode) {
+            toggleFunction("light");
+        } else {
+            toggleFunction(darkMode);
+        }
+
+
+    }
+
+    themFUnctions()
+
 </script>

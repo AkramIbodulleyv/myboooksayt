@@ -1,131 +1,137 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="uz">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Temuriylar Davri Adabiyoti</title>
     <style>
+        .dark-mode-btn {
+            padding: 16px 20px;
+            background-color: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            cursor: pointer;
+            position: absolute;
+            top: 190px !important;
+            right: 20px !important;
+            transition: all 0.3s ease;
+            color: rgba(0, 0, 0, 0.36);
+            z-index: 10;
+        }
 
-.dark-mode-btn {
-    padding: 16px 20px;
-    background-color: #ffffff;
-    border: 1px solid #e5e7eb;
-    border-radius: 6px;
-    cursor: pointer;
-    position: absolute;
-    top: 190px !important;
-    right: 20px !important;
-    transition: all 0.3s ease;
-    color: black;
-    z-index: 10;
-}
+        .dark-mode-btn:hover {
+            color: #d1d1d1;
+        }
 
-.dark-mode-btn:hover {
-    color: #d1d1d1;
-}
-
-body.dark-mode {
-    background-color: #333;
-    color: #000000;
-}
-
-
-body.dark-mode img {
-    filter: none;
-}
-
-body.dark-mode .header-pattern {
-    filter: none;
-
-}
+        body.dark-mode {
+            background-color: #333;
+            color: rgba(0, 0, 0, 0.36);
+        }
 
 
+        body.dark-mode img {
+            filter: none;
+        }
 
-body.dark-mode .header {
-    background-color: #C9AC8C !important;
-}
+        body.dark-mode .header-pattern {
+            filter: none;
 
-body.dark-mode .header-title {
-    color: #C9AC8C;
-}
-
-/* Search box */
-body.dark-mode .search-box {
-    background: rgba(0, 0, 0, 0.92);
-    color: #f8f9fa;
-}
-
-body.dark-mode .search-button,
-body.dark-mode .search-button2,
-body.dark-mode .search-button3,
-body.dark-mode .search-button4,
-body.dark-mode .search-button5 {
-    background-color: #C9AC8C;
-    color: white;
-}
-
-/* Card elementlari */
-body.dark-mode .card {
-    background: #222;
-    color: #f8f9fa;
-}
-
-body.dark-mode .card:hover {
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-}
-
-/* Pagination link */
-body.dark-mode .pagination-link {
-    color: #e0e0e0;
-    border: 1px solid #444;
-}
-
-body.dark-mode .pagination-link:hover {
-    background-color: #333;
-    color: #f8f9fa;
-}
-
-body.dark-mode .pagination-link.active {
-    background-color: #f8f9fa;
-    color: #333;
-}
-
-/* Logout button */
-body.dark-mode .logout-button {
-    background-color: #b91c1c;
-    color: #1b5de3;
-}
-body.dark-mode .header-pattern {
-    filter: none !important;
-    background-size: 950px;
-    position: absolute;/* Dark mode'da rasmga ta'sir qilmaslik */
-    opacity: 1 !important;   /* Opacity ni 1 qilib, rasmni qorayishini oldini olish */
-}
-
-/* Dark mode uchun tasvirlarni sozlash */
-body.dark-mode img {
-    filter: none !important; /* Dark mode'da rasmga hech qanday filtr qo'llanmasin */
-}
+        }
 
 
-body.dark-mode .logout-button:hover {
-    background-color: #9f1239;
-}
 
-/* Dark mode button rangini o'zgartirish */
-body.dark-mode .dark-mode-btn {
-    background-color: #333;
-    color: white;
-}
+        body.dark-mode .header {
+            background-color: #C9AC8C !important;
+        }
 
-body.dark-mode .dark-mode-btn:hover {
-    background-color: #444;
-    color: #e0e0e0;
-}
+        body.dark-mode .header-title {
+            color: #C9AC8C;
+        }
 
-        body{
+        /* Search box */
+        body.dark-mode .search-box {
+            background: rgba(0, 0, 0, 0.92);
+            color: #f8f9fa;
+        }
+
+        body.dark-mode .search-button,
+        body.dark-mode .search-button2,
+        body.dark-mode .search-button3,
+        body.dark-mode .search-button4,
+        body.dark-mode .search-button5 {
+            background-color: #C9AC8C;
+            color: white;
+        }
+
+        /* Card elementlari */
+        body.dark-mode .card {
+            background: #222;
+            color: #f8f9fa;
+        }
+
+        body.dark-mode .card:hover {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Pagination link */
+        body.dark-mode .pagination-link {
+            color: #e0e0e0;
+            border: 1px solid #444;
+        }
+
+        body.dark-mode .pagination-link:hover {
+            background-color: #333;
+            color: #f8f9fa;
+        }
+
+        body.dark-mode .pagination-link.active {
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        /* Logout button */
+        body.dark-mode .logout-button {
+            background-color: #b91c1c;
+            color: #1b5de3;
+        }
+
+        body.dark-mode .header-pattern {
+            filter: none !important;
+            background-size: 950px;
+            position: absolute;
+            /* Dark mode'da rasmga ta'sir qilmaslik */
+            opacity: 1 !important;
+            /* Opacity ni 1 qilib, rasmni qorayishini oldini olish */
+        }
+
+        /* Dark mode uchun tasvirlarni sozlash */
+        body.dark-mode img {
+            filter: none !important;
+            /* Dark mode'da rasmga hech qanday filtr qo'llanmasin */
+        }
+
+
+        body.dark-mode .logout-button:hover {
+            background-color: #9f1239;
+        }
+
+        /* Dark mode button rangini o'zgartirish */
+        body.dark-mode .dark-mode-btn {
+            background-color: #333;
+            color: white;
+        }
+
+        body.dark-mode .dark-mode-btn:hover {
+            background-color: #444;
+            color: #e0e0e0;
+        }
+
+        body {
             overflow-x: hidden;
         }
+
         @keyframes fadeIn {
             0% {
                 opacity: 0;
@@ -218,7 +224,6 @@ body.dark-mode .dark-mode-btn:hover {
             padding: 0;
             box-sizing: border-box;
             font-family: system-ui, -apple-system, sans-serif;
-            .card
         }
 
         body {
@@ -241,7 +246,7 @@ body.dark-mode .dark-mode-btn:hover {
             background-repeat: no-repeat;
             width: 100%;
             background-size: cover !important;
-            background-position: center ;
+            background-position: center;
             height: 400px;
         }
 
@@ -382,6 +387,7 @@ body.dark-mode .dark-mode-btn:hover {
             background-color: #b88a6b;
             transform: scale(1.1);
         }
+
         .button332:hover {
             background-color: #b88a6b;
             transform: scale(1.1);
@@ -400,6 +406,7 @@ body.dark-mode .dark-mode-btn:hover {
         .search-button3:active {
             background-color: #b88a6b;
         }
+
         .button332:active {
             background-color: #b88a6b;
         }
@@ -416,6 +423,7 @@ body.dark-mode .dark-mode-btn:hover {
         .img:active {
             background-color: #b88a6b;
         }
+
         .img:hover {
             background-color: #b88a6b;
             transform: scale(1.1);
@@ -476,11 +484,13 @@ body.dark-mode .dark-mode-btn:hover {
         .search-button2 {
             animation: gameInterface2 1s ease-out;
         }
+
         .button332 {
-        animation: gameInterface3 1s ease-out;
+            animation: gameInterface3 1s ease-out;
         }
+
         .img {
-        animation: gameInterface3 1s ease-out;
+            animation: gameInterface3 1s ease-out;
         }
 
 
@@ -552,6 +562,7 @@ body.dark-mode .dark-mode-btn:hover {
         .card:hover {
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
+
         .button332 {
             padding: 8px 16px;
             background-color: #C9AC8C;
@@ -564,7 +575,7 @@ body.dark-mode .dark-mode-btn:hover {
             transition: all 0.3s ease;
             color: white;
             z-index: 10;
-                    }
+        }
 
 
         .card-image {
@@ -727,13 +738,14 @@ body.dark-mode .dark-mode-btn:hover {
             .slider {
                 max-width: 100%;
             }
-            .slide {
-            min-width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
 
-        
+            .slide {
+                min-width: 100%;
+                height: 200px;
+                object-fit: cover;
+            }
+
+
         }
 
         body {
@@ -785,20 +797,20 @@ body.dark-mode .dark-mode-btn:hover {
     </style>
     <style>
         .img-link {
-             position: absolute;
-             top: 8px;
-             right: 35px;
-             width: 25px;
-             height: 25px;
-             z-index: 9999;
+            position: absolute;
+            top: 8px;
+            right: 35px;
+            width: 25px;
+            height: 25px;
+            z-index: 9999;
         }
 
         .img {
             width: 50px;
             height: 50px;
-            border-radius: 50% ;
+            border-radius: 50%;
             overflow: hidden;
-            display: flex ;
+            display: flex;
             justify-content: center;
             align-items: center;
         }
@@ -807,16 +819,19 @@ body.dark-mode .dark-mode-btn:hover {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="icon"
         href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQyiyYw7P3Ou4H0EB2CKR-39VbDLa9s1FyFg&s">
+       
+        <script src="{% static 'js/main.js' %}"></script>
 
 </head>
+
 <body>
-{% if user.is_authenticated %}
+    {% if user.is_authenticated %}
     <nav>
-        <a href="profile/edit/" class="img-link">
+        <a href="{% url 'edit_profile' %}" class="img-link">
             <img src="/static/1134.png" alt="dsdd" class="img">
         </a>
     </nav>
-{% endif %}
+    {% endif %}
 
 
     <header class="header">
@@ -846,7 +861,7 @@ body.dark-mode .dark-mode-btn:hover {
             <button class="next">&#10095;</button>
         </section>
 
-        <button onclick="router('/game/')" class="search-button2">Savol-Javob O`yin <i
+        <button onclick="router('{% url 'snakegame' %}')" class="search-button2">Savol-Javob O`yin <i
                 class="fa-solid fa-scroll"></i></button>
         <section class="categories">
             <h2>Asosiy kategoriyalar <i class="fa-solid fa-list"> </i></h2>
@@ -858,11 +873,12 @@ body.dark-mode .dark-mode-btn:hover {
                 <button onclick="router('?genre=Ishqiy')" class="category-links">Ishqiy kitoblar</button>
             </div>
         </section>
-    <body>
-<button class="button332" onclick="window.open('https://t.me/rootuzadmin_bot', '_blank')">
-        Taklif va Shikoyatlar uchun bosing !
-    </button>
-    </body>
+
+        <body>
+            <button class="button332" onclick="window.open('https://t.me/rootuzadmin_bot', '_blank')">
+                Taklif va Shikoyatlar uchun bosing !
+            </button>
+        </body>
         <main class="container">
             <section class="grid">
                 {% for book in books %}
@@ -882,40 +898,40 @@ body.dark-mode .dark-mode-btn:hover {
                     </a>
                 </div>
                 {% endfor %}
-            
+
             </section>
             <div class="pagination">
-                    {% if books.has_previous %}
-                    <a href="?page={{ books.previous_page_number }}" class="pagination-link">Ortga</a>
-                    {% endif %}
+                {% if books.has_previous %}
+                <a href="?page={{ books.previous_page_number }}" class="pagination-link">Ortga</a>
+                {% endif %}
 
-                    {% for page_num in books.paginator.page_range %}
-                    <a href="?page={{ page_num }}"
-                        class="pagination-link {% if page_num == books.number %} active {% endif %}">
-                        {{ page_num }}
-                    </a>
-                    {% endfor %}
+                {% for page_num in books.paginator.page_range %}
+                <a href="?page={{ page_num }}"
+                    class="pagination-link {% if page_num == books.number %} active {% endif %}">
+                    {{ page_num }}
+                </a>
+                {% endfor %}
 
-                    {% if books.has_next %}
-                    <a href="?page={{ books.next_page_number }}" class="pagination-link">Orqaga</a>
-                    {% endif %}
-                </div>
-                <div class="pagination">
-                    {% if page_obj.has_previous %}
-                    <a href="?page={{ page_obj.previous_page_number }}" class="pagination-link">Orqaga</a>
-                    {% endif %}
+                {% if books.has_next %}
+                <a href="?page={{ books.next_page_number }}" class="pagination-link">Orqaga</a>
+                {% endif %}
+            </div>
+            <div class="pagination">
+                {% if page_obj.has_previous %}
+                <a href="?page={{ page_obj.previous_page_number }}" class="pagination-link">Orqaga</a>
+                {% endif %}
 
-                    {% for page_num in page_obj.paginator.page_range %}
-                    <a href="?page={{ page_num }}" class="pagination-link
+                {% for page_num in page_obj.paginator.page_range %}
+                <a href="?page={{ page_num }}" class="pagination-link
             {% if page_num == page_obj.number %} active {% endif %}">
-                        {{ page_num }}
-                    </a>
-                    {% endfor %}
+                    {{ page_num }}
+                </a>
+                {% endfor %}
 
-                    {% if page_obj.has_next %}
-                    <a href="?page={{ page_obj.next_page_number }}" class="pagination-link">Keyingi</a>
-                    {% endif %}
-                </div>
+                {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}" class="pagination-link">Keyingi</a>
+                {% endif %}
+            </div>
         </main>
     </main>
     <button id="dark-mode-toggle" class="dark-mode-btn">
@@ -923,128 +939,147 @@ body.dark-mode .dark-mode-btn:hover {
         <i class="fa-solid fa-moon" id="mon"></i>
     </button>
 
-{% if not user.is_authenticated %}
+    {% if not user.is_authenticated %}
     <div class="auth-buttons">
         <button onclick="window.location.href='{% url 'login' %}'" class="search-button3">Login</button>
         <button onclick="window.location.href='{% url 'signup' %}'" class="search-button4">Sign Up</button>
     </div>
-{% endif %}
+    {% endif %}
 
-        <script>
-            function confirmLogout() {
-                return confirm("Rostan ham chiqmoqchimisiz?");
-            }
-            function router(url) {
-                window.location.href = url;
-            }
-        </script>
-        <script>
-            let currentSlide = 0;
-            const slides = document.querySelector('.slides');
-            const totalSlides = slides.children.length;
+    <script>
+        function confirmLogout() {
+            return confirm("Rostan ham chiqmoqchimisiz?");
+        }
+        function router(url) {
+            window.location.href = url;
+        }
+    </script>
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelector('.slides');
+        const totalSlides = slides.children.length;
 
-            function moveSlide(step) {
-                currentSlide = (currentSlide + step + totalSlides) % totalSlides;
-                const offset = -currentSlide * 100;
-                slides.style.transform = `translateX(${offset}%)`;
-            }
+        function moveSlide(step) {
+            currentSlide = (currentSlide + step + totalSlides) % totalSlides;
+            const offset = -currentSlide * 100;
+            slides.style.transform = `translateX(${offset}%)`;
+        }
 
-            let autoSlideInterval = setInterval(() => moveSlide(1), 3000);
+        let autoSlideInterval = setInterval(() => moveSlide(1), 3000);
 
-            document.querySelector('.prev').addEventListener('click', () => {
+        document.querySelector('.prev').addEventListener('click', () => {
+            clearInterval(autoSlideInterval);
+            moveSlide(-1);
+            autoSlideInterval = setInterval(() => moveSlide(1), 3000);
+        });
+
+        document.querySelector('.next').addEventListener('click', () => {
+            clearInterval(autoSlideInterval);
+            moveSlide(1);
+            autoSlideInterval = setInterval(() => moveSlide(1), 3000);
+        });
+
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        slides.addEventListener('touchstart', (e) => {
+            touchStartX = e.touches[0].clientX;
+        });
+
+        slides.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].clientX;
+            handleGesture();
+        });
+
+        function handleGesture() {
+            const threshold = 50;
+            const swipeDistance = touchEndX - touchStartX;
+
+            if (swipeDistance > threshold) {
                 clearInterval(autoSlideInterval);
                 moveSlide(-1);
                 autoSlideInterval = setInterval(() => moveSlide(1), 3000);
-            });
-
-            document.querySelector('.next').addEventListener('click', () => {
+            } else if (swipeDistance < -threshold) {
                 clearInterval(autoSlideInterval);
                 moveSlide(1);
                 autoSlideInterval = setInterval(() => moveSlide(1), 3000);
-            });
-
-            let touchStartX = 0;
-            let touchEndX = 0;
-
-            slides.addEventListener('touchstart', (e) => {
-                touchStartX = e.touches[0].clientX;
-            });
-
-            slides.addEventListener('touchend', (e) => {
-                touchEndX = e.changedTouches[0].clientX;
-                handleGesture();
-            });
-
-            function handleGesture() {
-                const threshold = 50;
-                const swipeDistance = touchEndX - touchStartX;
-
-                if (swipeDistance > threshold) {
-                    clearInterval(autoSlideInterval);
-                    moveSlide(-1);
-                    autoSlideInterval = setInterval(() => moveSlide(1), 3000);
-                } else if (swipeDistance < -threshold) {
-                    clearInterval(autoSlideInterval);
-                    moveSlide(1);
-                    autoSlideInterval = setInterval(() => moveSlide(1), 3000);
-                }
             }
-        </script>
-        <script>
-            window.addEventListener('resize', function () {
-                const screenWidth = window.innerWidth;
-
-                if (screenWidth < 768) {
-                } else {
-                }
-            });
-        </script>
-
-<script>
-    // Dark mode toggle
-    const darkModeToggle = document.getElementById('dark-mode-toggle');
-    const body = document.body;
-    const mon = document.getElementById("mon")
-    const {style} = document.getElementById("sun")
-
-    // Check if dark mode is enabled in localStorage
-    if(localStorage.getItem('dark-mode') === 'enabled') {
-        body.classList.add('dark-mode');
-        mon.style.display = "none"
-        style.display = "block"
-
-    }
-
-    // Toggle dark mode when the button is clicked
-    darkModeToggle.addEventListener('click', () => {
-        body.classList.toggle('dark-mode');
-
-        // Save the dark mode state to localStorage
-        if (body.classList.contains('dark-mode')) {
-            localStorage.setItem('dark-mode', 'enabled');
-            mon.style.display = "none"
-            style.display = "block"
-        } else {
-            localStorage.removeItem('dark-mode');
-             mon.style.display = "block"
-             style.display = "none"
-
         }
-    });
+    </script>
+    <script>
+        window.addEventListener('resize', function () {
+            const screenWidth = window.innerWidth;
 
-    // Prevent dark mode from affecting images
-    const images = document.querySelectorAll('img');
-    images.forEach(img => {
-        img.addEventListener('load', () => {
-            if (body.classList.contains('dark-mode')) {
-                img.style.filter = '.header-pattern';
+            if (screenWidth < 768) {
+            } else {
             }
         });
-    });
-</script>
+    </script>
 
+    <script>
+        const darkModeToggle = document.getElementById('dark-mode-toggle');
+const body = document.body;
+const mon = document.getElementById("mon");
+const sunIcon = document.getElementById("sun");
 
+const customTheme = (theme) => {
+    const elRoot = document.documentElement;
+    elRoot.setAttribute("data-theme", theme);
+    localStorage.setItem('dark-mode', JSON.stringify(theme));
 
+    if (theme === "dark") {
+        mon.style.display = "none";
+        sunIcon.style.display = "block";
+        body.classList.add('dark-mode');
+    } else {
+        mon.style.display = "block";
+        sunIcon.style.display = "none";
+        body.classList.remove("dark-mode");
+    }
+};
+
+const toggleFunction = (darkMode) => {
+    if (darkMode === "dark") {
+        customTheme("dark");
+    } else {
+        customTheme("light");
+    }
+};
+
+darkModeToggle.addEventListener('click', () => {
+    const darkMode = JSON.parse(localStorage.getItem('dark-mode'));
+    if (darkMode === "dark") {
+        toggleFunction("light");
+    }else{
+        toggleFunction("dark");
+    }
+
+});
+
+const themFUnctions = ()=> {
+    const darkMode = JSON.parse(localStorage.getItem('dark-mode'));
+    if ( !darkMode) {
+        toggleFunction("light");  
+    }else{
+        toggleFunction(darkMode);
+    }
+    
+
+}
+
+themFUnctions()
+
+        const images = document.querySelectorAll('img');
+        images.forEach(img => {
+            img.addEventListener('load', () => {
+                if (body.classList.contains('dark-mode')) {
+                    img.style.filter = '.header-pattern';
+                }
+            });
+        });
+    </script>
+
+   
 </body>
 
 </html>

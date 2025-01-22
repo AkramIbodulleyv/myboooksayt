@@ -239,12 +239,15 @@
 </head>
 <body>
     <header class="header">
-        <a href="/" class="logo">Badiiyat</a>
+        <a href="{% url 'base' %}" class="logo">Badiiyat</a>
         <nav class="nav">
-            <a href="/">Bosh sahifa  </a>
+            <a href="{% url 'base' %}">Bosh sahifa  </a>
             <a href="/?genre=">Kitoblar  </a>
             <div class="img">
-            <img src="/static/file_2640426.jpg" alt="dsdd">
+            <a href="{% url 'edit_profile' %}">
+         <img src="/static/1134.png" class="img" alt="dsdd">
+            </a>
+
 
             </div>
         </nav>
