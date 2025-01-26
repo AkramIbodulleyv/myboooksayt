@@ -26,7 +26,11 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import logout
 from .forms import UserChangeForm
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Task
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+from .serializers import AddBookSerializer
+
 
 
 @login_required(login_url='signup')
@@ -161,40 +165,6 @@ def verify_email_view(request):
 
     return render(request, 'verify_email.html')
 
-
-
-
-def task_list(request):
-    if request.method == 'POST':
-        text = request.POST.get('text')
-        if text:
-            Task.objects.create(name=text)
-        return redirect('task_list')
-
-    tasks = Task.objects.all()
-    return render(request, '12.html', {'tasks': tasks})
-
-def delete_task(request, task_id):
-    task = get_object_or_404(Task, id=task_id)
-    task.delete()
-    return redirect('task_list')
-
-
-def view_text(request):
-    text = get_object_or_404(TextModel, id=1)
-    return render(request, '12.html', {'text': text})
-
-
-def finished(request, task_id):
-    task = get_object_or_404(Task, id=task_id)
-    task.status = "Completed"
-    task.save()
-    return redirect('/12/')
-
-
-
-
-
 @login_required(login_url='login')
 def edit_profile(request):
     user = request.user
@@ -206,3 +176,20 @@ def edit_profile(request):
     else:
         form = UserChangeForm(instance=user)
     return render(request, 'edit_profile.html', {'form': form})
+
+
+
+
+def get_books(request):
+    books = AddBook.objects.all()
+    books_data = list(books.values('id', 'title', 'author', 'genre'))
+    return JsonResponse({'books': books_data})
+
+
+class AddBookAPIView(APIView):
+    def post(self, request):
+        serializer = AddBookSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

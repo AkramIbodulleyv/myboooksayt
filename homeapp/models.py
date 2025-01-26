@@ -35,20 +35,6 @@ class VerificationCode(models.Model):
 
 
 
-from django.db import models
-
-class Task(models.Model):
-    name = models.CharField(max_length=255)
-    status = models.CharField(max_length=50, default='In progress')
-
-    def __str__(self):
-        return self.name
-
-class TextModel(models.Model):
-    content = models.TextField()
-
-
-
 
 class botsavemodel(models.Model):
     user_id = models.BigIntegerField()
